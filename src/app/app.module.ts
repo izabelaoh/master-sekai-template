@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -88,7 +88,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { BlockViewer } from './components/blockviewer/blockviewer.component';
- 
+
 import { AppCodeModule } from './components/app-code/app.code.component';
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
@@ -121,7 +121,7 @@ import { CrudComponent } from './components/crud/crud.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
 import { BlocksComponent } from './components/blocks/blocks.component';
-import { PaymentComponent} from './components/menus/payment.component';
+import { PaymentComponent } from './components/menus/payment.component';
 import { ConfirmationComponent } from './components/menus/confirmation.component';
 import { PersonalComponent } from './components/menus/personal.component';
 import { SeatComponent } from './components/menus/seat.component';
@@ -136,10 +136,19 @@ import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
-import { LoginComponent } from './components/login/login.component';
+
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
+import { AuthComponent } from './pages/auth/auth.component';
+import { MainComponent } from './pages/main/main.component';
+import { environment } from 'src/environments/environment';
+
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AppLoginComponent } from './pages/auth/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     imports: [
@@ -230,6 +239,14 @@ import { AccessComponent } from './components/access/access.component';
         VirtualScrollerModule,
         AppCodeModule,
         StyleClassModule,
+
+        ReactiveFormsModule,
+
+        AngularFireModule.initializeApp(environment.firebase),
+        // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
+        AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+        AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+        // AngularFireStorageModule, // imports firebase/storage only needed for storage features
     ],
     declarations: [
         AppComponent,
@@ -269,16 +286,28 @@ import { AccessComponent } from './components/access/access.component';
         PersonalComponent,
         SeatComponent,
         LandingComponent,
+        AppLoginComponent,
         LoginComponent,
         ErrorComponent,
         NotfoundComponent,
         AccessComponent,
+
+        AuthComponent,
+        MainComponent,
+        DashboardComponent,
     ],
     providers: [
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        CountryService,
+        CustomerService,
+        EventService,
+        IconService,
+        NodeService,
+        PhotoService,
+        ProductService,
+        MenuService,
+        ConfigService,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
