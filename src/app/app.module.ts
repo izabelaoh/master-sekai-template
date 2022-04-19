@@ -97,8 +97,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigComponent } from './app.config.component';
 import { AppMenuComponent } from './app.menu.component';
 import { AppMenuitemComponent } from './app.menuitem.component';
-
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/main/dashboard/dashboard.component';
 import { FormLayoutComponent } from './components/formlayout/formlayout.component';
 import { FloatLabelComponent } from './components/floatlabel/floatlabel.component';
 import { InvalidStateComponent } from './components/invalidstate/invalidstate.component';
