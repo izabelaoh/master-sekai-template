@@ -1,52 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 
 @Component({
     selector: 'app-menu',
-    template: `
-        <div class="layout-menu-container">
-            <button
-                pButton
-                pRipple
-                type="button"
-                label="New Patient +"
-                class="p-button-help mr-2 mb-2"
-            ></button>
-
-            <ul class="layout-menu" role="menu" (keydown)="onKeydown($event)">
-                <li
-                    app-menu
-                    class="layout-menuitem-category"
-                    *ngFor="let item of model; let i = index"
-                    [item]="item"
-                    [index]="i"
-                    [root]="true"
-                    role="none"
-                >
-                    <div
-                        class="layout-menuitem-root-text"
-                        [attr.aria-label]="item.label"
-                    >
-                        {{ item.label }}
-                    </div>
-                    <ul role="menu">
-                        <li
-                            app-menuitem
-                            *ngFor="let child of item.items"
-                            [item]="child"
-                            [index]="i"
-                            role="none"
-                        ></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    `,
+    templateUrl: './app.menu.component.html',
 })
 export class AppMenuComponent implements OnInit {
     model: any[];
+    display: boolean;
+    constructor(public router: Router, public appMain: MainComponent) {}
 
-    constructor(public appMain: MainComponent) {}
+    newPatientForm: FormGroup = new FormGroup({
+        FirstName: new FormControl('', [Validators.required]),
+        LastName: new FormControl('', [Validators.required]),
+        Embg: new FormControl('', [Validators.required]),
+        DateOfBirth: new FormControl(null, [Validators.required]),
+        Gender: new FormControl(null, [Validators.required]),
+        BloodType: new FormControl(null, [Validators.required]),
+        Address: new FormControl('', [Validators.required]),
+        Phone: new FormControl('', [Validators.required]),
+    });
+    goToNewPatient() {
+        this.router.navigate(['main/new-patient']);
+    }
 
     ngOnInit() {
         this.model = [

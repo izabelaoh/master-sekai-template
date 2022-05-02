@@ -1,0 +1,92 @@
+<div class="layout-menu-container">
+    <div class="grid">
+        <div class="col-12">
+            <button
+                (click)="display = true"
+                pButton
+                icon="pi pi-plus-circle"
+                style="width: auto"
+                label="New Patient"
+                class="p-button-help mr-2 mb-2"
+            ></button>
+        </div>
+    </div>
+
+    <ul class="layout-menu" role="menu" (keydown)="onKeydown($event)">
+        <li
+            app-menu
+            class="layout-menuitem-category"
+            *ngFor="let item of model; let i = index"
+            [item]="item"
+            [index]="i"
+            [root]="true"
+            role="none"
+        >
+            <div
+                class="layout-menuitem-root-text"
+                [attr.aria-label]="item.label"
+            >
+                {{ item.label }}
+            </div>
+            <ul role="menu">
+                <li
+                    app-menuitem
+                    *ngFor="let child of item.items"
+                    [item]="child"
+                    [index]="i"
+                    role="none"
+                ></li>
+            </ul>
+        </li>
+    </ul>
+
+    <p-dialog
+        header="New patient"
+        [(visible)]="display"
+        modal="modal"
+        showEffect="fade"
+        [style]="{ width: '30vw' }"
+        [breakpoints]="{ '960px': '75vw' }"
+    >
+        <form [formGroup]="newPatientForm">
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="name">First Name</label>
+                <input pInputText type="text" placeholder="First Name" />
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="lastName">Last Name</label>
+                <input pInputText type="text" placeholder="Last Name" />
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="embg">EMBG</label>
+                <input pInputText type="number" placeholder="EMBG" />
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="dateOfBirth">Date of birth</label>
+                <input pInputText type="text" placeholder="dd.mm.yyyy" />
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="gender">Gender</label>
+                <input pInputText type="text" placeholder="Blood Type" />
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="adress">Andress</label>
+                <input pInputText type="text" placeholder="Adress" />
+            </div>
+            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
+                <label for="phone">Phone</label>
+                <input pInputText type="number" placeholder="Phone" />
+            </div>
+        </form>
+
+        <ng-template pTemplate="footer">
+            <button
+                pButton
+                pRipple
+                label="Submit"
+                icon="pi pi-bookmark"
+                class="p-button-help mr-2 mb-2"
+            ></button>
+        </ng-template>
+    </p-dialog>
+</div>
