@@ -3,10 +3,9 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 @Component({
     templateUrl: './menus.component.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class MenusComponent implements OnInit {
-
     breadcrumbItems: MenuItem[];
 
     tieredItems: MenuItem[];
@@ -30,7 +29,6 @@ export class MenusComponent implements OnInit {
     pageIndex: number = 0;
 
     ngOnInit() {
-
         this.tieredItems = [
             {
                 label: 'Customers',
@@ -42,20 +40,19 @@ export class MenusComponent implements OnInit {
                         items: [
                             {
                                 label: 'Customer',
-                                icon: 'pi pi-fw pi-plus'
+                                icon: 'pi pi-fw pi-plus',
                             },
                             {
                                 label: 'Duplicate',
-                                icon: 'pi pi-fw pi-copy'
+                                icon: 'pi pi-fw pi-copy',
                             },
-
-                        ]
+                        ],
                     },
                     {
                         label: 'Edit',
-                        icon: 'pi pi-fw pi-user-edit'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-user-edit',
+                    },
+                ],
             },
             {
                 label: 'Orders',
@@ -63,14 +60,13 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'View',
-                        icon: 'pi pi-fw pi-list'
+                        icon: 'pi pi-fw pi-list',
                     },
                     {
                         label: 'Search',
-                        icon: 'pi pi-fw pi-search'
-                    }
-
-                ]
+                        icon: 'pi pi-fw pi-search',
+                    },
+                ],
             },
             {
                 label: 'Shipments',
@@ -79,18 +75,16 @@ export class MenusComponent implements OnInit {
                     {
                         label: 'Tracker',
                         icon: 'pi pi-fw pi-compass',
-
                     },
                     {
                         label: 'Map',
                         icon: 'pi pi-fw pi-map-marker',
-
                     },
                     {
                         label: 'Manage',
-                        icon: 'pi pi-fw pi-pencil'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-pencil',
+                    },
+                ],
             },
             {
                 label: 'Profile',
@@ -98,19 +92,19 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'Settings',
-                        icon: 'pi pi-fw pi-cog'
+                        icon: 'pi pi-fw pi-cog',
                     },
                     {
                         label: 'Billing',
-                        icon: 'pi pi-fw pi-file'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-file',
+                    },
+                ],
             },
             { separator: true },
             {
                 label: 'Quit',
-                icon: 'pi pi-fw pi-sign-out'
-            }
+                icon: 'pi pi-fw pi-sign-out',
+            },
         ];
 
         this.items = [
@@ -119,27 +113,26 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'New',
-                        icon: 'pi pi-fw pi-plus'
+                        icon: 'pi pi-fw pi-plus',
                     },
                     {
                         label: 'Edit',
-                        icon: 'pi pi-fw pi-user-edit'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-user-edit',
+                    },
+                ],
             },
             {
                 label: 'Orders',
                 items: [
                     {
                         label: 'View',
-                        icon: 'pi pi-fw pi-list'
+                        icon: 'pi pi-fw pi-list',
                     },
                     {
                         label: 'Search',
-                        icon: 'pi pi-fw pi-search'
-                    }
-
-                ]
+                        icon: 'pi pi-fw pi-search',
+                    },
+                ],
             },
             {
                 label: 'Shipments',
@@ -147,36 +140,38 @@ export class MenusComponent implements OnInit {
                     {
                         label: 'Tracker',
                         icon: 'pi pi-fw pi-compass',
-
                     },
                     {
                         label: 'Map',
                         icon: 'pi pi-fw pi-map-marker',
-
                     },
                     {
                         label: 'Manage',
-                        icon: 'pi pi-fw pi-pencil'
-                    }
-                ]
-            }
+                        icon: 'pi pi-fw pi-pencil',
+                    },
+                ],
+            },
         ];
 
         this.menuItems = [
             {
-                label: 'Save', icon: 'pi pi-fw pi-check'
+                label: 'Save',
+                icon: 'pi pi-fw pi-check',
             },
             {
-                label: 'Update', icon: 'pi pi-fw pi-refresh'
+                label: 'Update',
+                icon: 'pi pi-fw pi-refresh',
             },
             {
-                label: 'Delete', icon: 'pi pi-fw pi-trash'
+                label: 'Delete',
+                icon: 'pi pi-fw pi-trash',
             },
             {
-                separator: true
+                separator: true,
             },
             {
-                label: 'Home', icon: 'pi pi-fw pi-home'
+                label: 'Home',
+                icon: 'pi pi-fw pi-home',
             },
         ];
 
@@ -187,13 +182,13 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'New',
-                        icon: 'pi pi-fw pi-plus'
+                        icon: 'pi pi-fw pi-plus',
                     },
                     {
                         label: 'Edit',
-                        icon: 'pi pi-fw pi-user-edit'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-user-edit',
+                    },
+                ],
             },
             {
                 label: 'Orders',
@@ -201,14 +196,13 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'View',
-                        icon: 'pi pi-fw pi-list'
+                        icon: 'pi pi-fw pi-list',
                     },
                     {
                         label: 'Search',
-                        icon: 'pi pi-fw pi-search'
-                    }
-
-                ]
+                        icon: 'pi pi-fw pi-search',
+                    },
+                ],
             },
             {
                 label: 'Shipments',
@@ -217,18 +211,16 @@ export class MenusComponent implements OnInit {
                     {
                         label: 'Tracker',
                         icon: 'pi pi-fw pi-compass',
-
                     },
                     {
                         label: 'Map',
                         icon: 'pi pi-fw pi-map-marker',
-
                     },
                     {
                         label: 'Manage',
-                        icon: 'pi pi-fw pi-pencil'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-pencil',
+                    },
+                ],
             },
             {
                 label: 'Profile',
@@ -236,14 +228,14 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'Settings',
-                        icon: 'pi pi-fw pi-cog'
+                        icon: 'pi pi-fw pi-cog',
                     },
                     {
                         label: 'Billing',
-                        icon: 'pi pi-fw pi-file'
-                    }
-                ]
-            }
+                        icon: 'pi pi-fw pi-file',
+                    },
+                ],
+            },
         ];
 
         this.plainMenuItems = [
@@ -252,28 +244,27 @@ export class MenusComponent implements OnInit {
                 items: [
                     {
                         label: 'New',
-                        icon: 'pi pi-fw pi-plus'
+                        icon: 'pi pi-fw pi-plus',
                     },
                     {
                         label: 'Edit',
-                        icon: 'pi pi-fw pi-user-edit'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-user-edit',
+                    },
+                ],
             },
             {
                 label: 'Orders',
                 items: [
                     {
                         label: 'View',
-                        icon: 'pi pi-fw pi-list'
+                        icon: 'pi pi-fw pi-list',
                     },
                     {
                         label: 'Search',
-                        icon: 'pi pi-fw pi-search'
-                    }
-
-                ]
-            }
+                        icon: 'pi pi-fw pi-search',
+                    },
+                ],
+            },
         ];
 
         this.breadcrumbItems = [];
@@ -285,114 +276,171 @@ export class MenusComponent implements OnInit {
         this.breadcrumbItems.push({ label: 'Item' });
 
         this.routeItems = [
-            {label: 'Personal', routerLink:'personal'},
-            {label: 'Seat', routerLink:'seat'},
-            {label: 'Payment', routerLink:'payment'},
-            {label: 'Confirmation', routerLink:'confirmation'},
+            { label: 'Personal', routerLink: 'personal' },
+            { label: 'Seat', routerLink: 'seat' },
+            { label: 'Payment', routerLink: 'payment' },
+            { label: 'Confirmation', routerLink: 'confirmation' },
         ];
 
         this.megaMenuItems = [
             {
-                label: 'Fashion', icon: 'pi pi-fw pi-tag',
+                label: 'Fashion',
+                icon: 'pi pi-fw pi-tag',
                 items: [
                     [
                         {
                             label: 'Women',
-                            items: [{label: 'Women Item'}, {label: 'Women Item'}, {label: 'Women Item'}]
+                            items: [
+                                { label: 'Women Item' },
+                                { label: 'Women Item' },
+                                { label: 'Women Item' },
+                            ],
                         },
                         {
                             label: 'Men',
-                            items: [{label: 'Men Item'}, {label: 'Men Item'}, {label: 'Men Item'}]
-                        }
+                            items: [
+                                { label: 'Men Item' },
+                                { label: 'Men Item' },
+                                { label: 'Men Item' },
+                            ],
+                        },
                     ],
                     [
                         {
                             label: 'Kids',
-                            items: [{label: 'Kids Item'}, {label: 'Kids Item'}]
+                            items: [
+                                { label: 'Kids Item' },
+                                { label: 'Kids Item' },
+                            ],
                         },
                         {
                             label: 'Luggage',
-                            items: [{label: 'Luggage Item'}, {label: 'Luggage Item'}, {label: 'Luggage Item'}]
-                        }
-                    ]
-                ]
+                            items: [
+                                { label: 'Luggage Item' },
+                                { label: 'Luggage Item' },
+                                { label: 'Luggage Item' },
+                            ],
+                        },
+                    ],
+                ],
             },
             {
-                label: 'Electronics', icon: 'pi pi-fw pi-desktop',
+                label: 'Electronics',
+                icon: 'pi pi-fw pi-desktop',
                 items: [
                     [
                         {
                             label: 'Computer',
-                            items: [{label: 'Computer Item'}, {label: 'Computer Item'}]
+                            items: [
+                                { label: 'Computer Item' },
+                                { label: 'Computer Item' },
+                            ],
                         },
                         {
                             label: 'Camcorder',
-                            items: [{label: 'Camcorder Item'}, {label: 'Camcorder Item'}, {label: 'Camcorder Item'}]
-                        }
+                            items: [
+                                { label: 'Camcorder Item' },
+                                { label: 'Camcorder Item' },
+                                { label: 'Camcorder Item' },
+                            ],
+                        },
                     ],
                     [
                         {
                             label: 'TV',
-                            items: [{label: 'TV Item'}, {label: 'TV Item'}]
+                            items: [{ label: 'TV Item' }, { label: 'TV Item' }],
                         },
                         {
                             label: 'Audio',
-                            items: [{label: 'Audio Item'}, {label: 'Audio Item'}, {label: 'Audio Item'}]
-                        }
+                            items: [
+                                { label: 'Audio Item' },
+                                { label: 'Audio Item' },
+                                { label: 'Audio Item' },
+                            ],
+                        },
                     ],
                     [
                         {
                             label: 'Sports.7',
-                            items: [{label: 'Sports.7.1'}, {label: 'Sports.7.2'}]
-                        }
-                    ]
-                ]
+                            items: [
+                                { label: 'Sports.7.1' },
+                                { label: 'Sports.7.2' },
+                            ],
+                        },
+                    ],
+                ],
             },
             {
-                label: 'Furniture', icon: 'pi pi-fw pi-image',
+                label: 'Furniture',
+                icon: 'pi pi-fw pi-image',
                 items: [
                     [
                         {
                             label: 'Living Room',
-                            items: [{label: 'Living Room Item'}, {label: 'Living Room Item'}]
+                            items: [
+                                { label: 'Living Room Item' },
+                                { label: 'Living Room Item' },
+                            ],
                         },
                         {
                             label: 'Kitchen',
-                            items: [{label: 'Kitchen Item'}, {label: 'Kitchen Item'}, {label: 'Kitchen Item'}]
-                        }
+                            items: [
+                                { label: 'Kitchen Item' },
+                                { label: 'Kitchen Item' },
+                                { label: 'Kitchen Item' },
+                            ],
+                        },
                     ],
                     [
                         {
                             label: 'Bedroom',
-                            items: [{label: 'Bedroom Item'}, {label: 'Bedroom Item'}]
+                            items: [
+                                { label: 'Bedroom Item' },
+                                { label: 'Bedroom Item' },
+                            ],
                         },
                         {
                             label: 'Outdoor',
-                            items: [{label: 'Outdoor Item'}, {label: 'Outdoor Item'}, {label: 'Outdoor Item'}]
-                        }
-                    ]
-                ]
+                            items: [
+                                { label: 'Outdoor Item' },
+                                { label: 'Outdoor Item' },
+                                { label: 'Outdoor Item' },
+                            ],
+                        },
+                    ],
+                ],
             },
             {
-                label: 'Sports', icon: 'pi pi-fw pi-star',
+                label: 'Sports',
+                icon: 'pi pi-fw pi-star',
                 items: [
                     [
                         {
                             label: 'Basketball',
-                            items: [{label: 'Basketball Item'}, {label: 'Basketball Item'}]
+                            items: [
+                                { label: 'Basketball Item' },
+                                { label: 'Basketball Item' },
+                            ],
                         },
                         {
                             label: 'Football',
-                            items: [{label: 'Football Item'}, {label: 'Football Item'}, {label: 'Football Item'}]
-                        }
+                            items: [
+                                { label: 'Football Item' },
+                                { label: 'Football Item' },
+                                { label: 'Football Item' },
+                            ],
+                        },
                     ],
                     [
                         {
                             label: 'Tennis',
-                            items: [{label: 'Tennis Item'}, {label: 'Tennis Item'}]
-                        }
-                    ]
-                ]
+                            items: [
+                                { label: 'Tennis Item' },
+                                { label: 'Tennis Item' },
+                            ],
+                        },
+                    ],
+                ],
             },
         ];
 
@@ -406,34 +454,32 @@ export class MenusComponent implements OnInit {
                         items: [
                             {
                                 label: 'Customer',
-                                icon: 'pi pi-fw pi-plus'
+                                icon: 'pi pi-fw pi-plus',
                             },
                             {
                                 label: 'Duplicate',
-                                icon: 'pi pi-fw pi-copy'
+                                icon: 'pi pi-fw pi-copy',
                             },
-
-                        ]
+                        ],
                     },
                     {
                         label: 'Edit',
-                        icon: 'pi pi-fw pi-user-edit'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-user-edit',
+                    },
+                ],
             },
             {
                 label: 'Orders',
                 items: [
                     {
                         label: 'View',
-                        icon: 'pi pi-fw pi-list'
+                        icon: 'pi pi-fw pi-list',
                     },
                     {
                         label: 'Search',
-                        icon: 'pi pi-fw pi-search'
-                    }
-
-                ]
+                        icon: 'pi pi-fw pi-search',
+                    },
+                ],
             },
             {
                 label: 'Shipments',
@@ -441,33 +487,30 @@ export class MenusComponent implements OnInit {
                     {
                         label: 'Tracker',
                         icon: 'pi pi-fw pi-compass',
-
                     },
                     {
                         label: 'Map',
                         icon: 'pi pi-fw pi-map-marker',
-
                     },
                     {
                         label: 'Manage',
-                        icon: 'pi pi-fw pi-pencil'
-                    }
-                ]
+                        icon: 'pi pi-fw pi-pencil',
+                    },
+                ],
             },
             {
                 label: 'Profile',
                 items: [
                     {
                         label: 'Settings',
-                        icon: 'pi pi-fw pi-cog'
+                        icon: 'pi pi-fw pi-cog',
                     },
                     {
                         label: 'Billing',
-                        icon: 'pi pi-fw pi-file'
-                    }
-                ]
-            }
+                        icon: 'pi pi-fw pi-file',
+                    },
+                ],
+            },
         ];
     }
-
 }

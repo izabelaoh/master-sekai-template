@@ -250,6 +250,7 @@ import { LoginComponent } from './components/login/login.component';
     declarations: [
         AppComponent,
         AppMainComponent,
+        MainComponent,
         AppTopBarComponent,
         AppFooterComponent,
         AppConfigComponent,

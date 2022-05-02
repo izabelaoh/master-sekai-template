@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../../service/app.config.service';
 import { AppConfig } from '../../../api/appconfig';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
     selector: 'app-login',
@@ -43,6 +44,7 @@ export class AppLoginComponent implements OnInit, OnDestroy {
     constructor(
         public configService: ConfigService,
         private angularAuth: AngularFireAuth,
+        private firestore: AngularFirestore,
         private router: Router
     ) {}
 
@@ -52,7 +54,6 @@ export class AppLoginComponent implements OnInit, OnDestroy {
     });
 
     ngOnInit(): void {
-        debugger;
         this.config = this.configService.config;
         this.subscription = this.configService.configUpdate$.subscribe(
             (config) => {
@@ -96,6 +97,16 @@ export class AppLoginComponent implements OnInit, OnDestroy {
                 this.loginForm.controls.email.value,
                 this.loginForm.controls.password.value
             )
+            .then(async (user) => {
+                let userData = await firstValueFrom(
+                    this.firestore.doc(`users/${user.user.uid}`).get()
+                );
+
+                return {
+                    ...user,
+                    UserData: userData.data(),
+                };
+            })
             .then((user) => {
                 this.router.navigate(['/main/dashboard']);
                 localStorage.setItem('LoggedUser', JSON.stringify(user));
