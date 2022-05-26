@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem, SelectItem } from 'primeng/api';
 import { MainComponent } from './pages/main/main.component';
+import { CountryService } from './service/countryservice';
 
 @Component({
     selector: 'app-menu',
@@ -10,11 +13,19 @@ import { MainComponent } from './pages/main/main.component';
 export class AppMenuComponent implements OnInit {
     model: any[];
     display: boolean;
-    constructor(public router: Router, public appMain: MainComponent) {}
+    menuItems: MenuItem[];
+    bloodTypes: SelectItem[];
+
+    constructor(
+        public router: Router,
+        public appMain: MainComponent,
+        private countryService: CountryService
+    ) {}
 
     newPatientForm: FormGroup = new FormGroup({
         FirstName: new FormControl('', [Validators.required]),
         LastName: new FormControl('', [Validators.required]),
+        Email: new FormControl('', [Validators.required]),
         Embg: new FormControl('', [Validators.required]),
         DateOfBirth: new FormControl(null, [Validators.required]),
         Gender: new FormControl(null, [Validators.required]),
@@ -59,8 +70,47 @@ export class AppMenuComponent implements OnInit {
                 ],
             },
         ];
-    }
 
+        // this.countryService.getCountries().then((countries) => {
+        //     this.bloodTypes = countries;
+        // });
+        this.bloodTypes = [
+            {
+                label: 'A+',
+                value: { id: 1, name: 'A+', code: 'А' },
+            },
+            {
+                label: 'A-',
+                value: { id: 2, name: 'A-', code: 'А-' },
+            },
+            {
+                label: 'B+',
+                value: { id: 3, name: 'B+', code: 'B+' },
+            },
+            {
+                label: 'B-',
+                value: { id: 4, name: 'B-', code: 'B-' },
+            },
+            {
+                label: 'О+',
+                value: { id: 5, name: 'O+', code: 'O+' },
+            },
+            {
+                label: 'O-',
+                value: { id: 6, name: 'O-', code: 'O-' },
+            },
+            {
+                label: 'AB+',
+                value: { id: 7, name: 'AB+', code: 'AB+' },
+            },
+            {
+                label: 'AB-',
+                value: { id: 8, name: 'AB-', code: 'AB-' },
+            },
+        ];
+    }
+    onSubmit() {}
+    onCancel() {}
     onKeydown(event: KeyboardEvent) {
         const nodeElement = <HTMLDivElement>event.target;
         if (event.code === 'Enter' || event.code === 'Space') {

@@ -48,44 +48,145 @@
         [style]="{ width: '30vw' }"
         [breakpoints]="{ '960px': '75vw' }"
     >
-        <form [formGroup]="newPatientForm">
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="name">First Name</label>
-                <input pInputText type="text" placeholder="First Name" />
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="lastName">Last Name</label>
-                <input pInputText type="text" placeholder="Last Name" />
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="embg">EMBG</label>
-                <input pInputText type="number" placeholder="EMBG" />
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="dateOfBirth">Date of birth</label>
-                <input pInputText type="text" placeholder="dd.mm.yyyy" />
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="gender">Gender</label>
-                <input pInputText type="text" placeholder="Blood Type" />
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="adress">Andress</label>
-                <input pInputText type="text" placeholder="Adress" />
-            </div>
-            <div class="col-12 mb-2 lg:col-4 lg:mb-0">
-                <label for="phone">Phone</label>
-                <input pInputText type="number" placeholder="Phone" />
-            </div>
-        </form>
+        <div>
+            <form [formGroup]="newPatientForm">
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="firstName" class="control-label"
+                            >First name</label
+                        >
+                    </div>
 
+                    <div style="flex: 1; margin-left: -100px; padding-top: 6px">
+                        <input
+                            pInputText
+                            type="text"
+                            placeholder="First name"
+                            formControlName="FirstName"
+                        />
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="lastName">Last name</label>
+                    </div>
+
+                    <div style="flex: 1; margin-left: -100px; padding-top: 6px">
+                        <input
+                            pInputText
+                            type="text"
+                            placeholder="Last name"
+                            formControlName="LastName"
+                        />
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="email">Email</label>
+                    </div>
+
+                    <div style="flex: 1; margin-left: -100px; padding-top: 6px">
+                        <input
+                            pInputText
+                            type="email"
+                            placeholder="Email"
+                            formControlName="Email"
+                        />
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="embg">Embg</label>
+                    </div>
+
+                    <div style="flex: 1; margin-left: -100px; padding-top: 6px">
+                        <input
+                            pInputText
+                            type="text"
+                            placeholder="Embg"
+                            formControlName="Embg"
+                        />
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="dateOfBirth">Date of birth</label>
+                    </div>
+                    <p-calendar
+                        [showIcon]="true"
+                        [showButtonBar]="true"
+                    ></p-calendar>
+                </div>
+
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="gender">Gender</label>
+                    </div>
+                    <div style="flex: 1; margin-left: 15px; padding-top: 6px">
+                        <p-radioButton name="gender" value="1"></p-radioButton>
+                        <label for="female">Female</label>
+                    </div>
+                    <div style="flex: 1; margin-left: -30px; padding-top: 6px">
+                        <p-radioButton name="gender" value="2"></p-radioButton>
+                        <label for="male">Male</label>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="bloodType">Blood type</label>
+                    </div>
+
+                    <p-dropdown
+                        [options]="bloodTypes"
+                        placeholder="Blood type"
+                        [showClear]="true"
+                    ></p-dropdown>
+                </div>
+
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="adress">Address</label>
+                    </div>
+
+                    <div style="flex: 1; margin-left: -100px; padding-top: 6px">
+                        <input
+                            pInputText
+                            type="text"
+                            placeholder="Address"
+                            formControlName="Address"
+                        />
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 1">
+                        <label for="phone">Phone</label>
+                    </div>
+
+                    <div style="flex: 1; margin-left: -100px; padding-top: 6px">
+                        <input
+                            pInputText
+                            placeholder="Phone"
+                            formControlName="Phone"
+                        />
+                    </div>
+                </div>
+            </form>
+        </div>
         <ng-template pTemplate="footer">
+            <button
+                pButton
+                pRipple
+                label="Cancel"
+                class="p-button-raised p-button-warning mr-2 mb-2"
+                (click)="onCancel()"
+            ></button>
             <button
                 pButton
                 pRipple
                 label="Submit"
                 icon="pi pi-bookmark"
                 class="p-button-help mr-2 mb-2"
+                (click)="onSubmit()"
             ></button>
         </ng-template>
     </p-dialog>
