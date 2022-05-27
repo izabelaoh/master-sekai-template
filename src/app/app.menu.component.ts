@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuItem, SelectItem } from 'primeng/api';
 import { MainComponent } from './pages/main/main.component';
-import { CountryService } from './service/countryservice';
 
 @Component({
     selector: 'app-menu',
@@ -16,11 +14,7 @@ export class AppMenuComponent implements OnInit {
     menuItems: MenuItem[];
     bloodTypes: SelectItem[];
 
-    constructor(
-        public router: Router,
-        public appMain: MainComponent,
-        private countryService: CountryService
-    ) {}
+    constructor(public router: Router, public appMain: MainComponent) {}
 
     newPatientForm: FormGroup = new FormGroup({
         FirstName: new FormControl('', [Validators.required]),
@@ -33,6 +27,7 @@ export class AppMenuComponent implements OnInit {
         Address: new FormControl('', [Validators.required]),
         Phone: new FormControl('', [Validators.required]),
     });
+
     goToNewPatient() {
         this.router.navigate(['main/new-patient']);
     }
