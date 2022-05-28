@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MenuItem, SelectItem } from 'primeng/api';
@@ -14,7 +15,11 @@ export class AppMenuComponent implements OnInit {
     menuItems: MenuItem[];
     bloodTypes: SelectItem[];
 
-    constructor(public router: Router, public appMain: MainComponent) {}
+    constructor(
+        public router: Router,
+        public appMain: MainComponent,
+        private angularFireStore: AngularFirestore
+    ) {}
 
     newPatientForm: FormGroup = new FormGroup({
         FirstName: new FormControl('', [Validators.required]),
@@ -66,9 +71,6 @@ export class AppMenuComponent implements OnInit {
             },
         ];
 
-        // this.countryService.getCountries().then((countries) => {
-        //     this.bloodTypes = countries;
-        // });
         this.bloodTypes = [
             {
                 label: 'A+',
@@ -105,7 +107,24 @@ export class AppMenuComponent implements OnInit {
         ];
     }
     onSubmit() {
-        console.log(this.newPatientForm.getRawValue());
+        if (this.newPatientForm.invalid) {
+            console.log('All fields are required');
+            return;
+        }
+
+        let newPatient = this.newPatientForm.getRawValue();
+
+        this.angularFireStore
+            .collection('patients')
+            .add(newPatient)
+            .then((dataRef) => {
+                let patientId = dataRef.id;
+
+                this.router.navigate([`/main/patient-profile/${patientId}`]);
+            })
+            .catch(() => {
+                console.log('Server error! Try again.');
+            });
     }
     onCancel() {}
     onKeydown(event: KeyboardEvent) {

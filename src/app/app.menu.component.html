@@ -55,65 +55,9 @@
                         <div class="card p-fluid">
                             <div class="field grid">
                                 <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Date of birth</label
-                                >
-                                <div class="col-12 md:col-9">
-                                    <p-calendar
-                                        class="w-full"
-                                        [showIcon]="true"
-                                        [showButtonBar]="true"
-                                        placeholder="Date of birth"
-                                        formControlName="DateOfBirth"
-                                    ></p-calendar>
-                                </div>
-                            </div>
-
-                            <div class="field grid">
-                                <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Blood type</label
-                                >
-                                <div class="col-12 md:col-9">
-                                    <p-dropdown
-                                        class="w-full"
-                                        [options]="bloodTypes"
-                                        placeholder="Blood type"
-                                        [showClear]="true"
-                                    ></p-dropdown>
-                                </div>
-                            </div>
-                            <div class="field grid">
-                                <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Address</label
-                                >
-                                <div class="col-12 md:col-9">
-                                    <input
-                                        class="w-full"
-                                        pInputText
-                                        id="address"
-                                        type="text"
-                                        placeholder="Address"
-                                        formControlName="Address"
-                                    />
-                                </div>
-                            </div>
-                            <div class="field grid">
-                                <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Phone</label
-                                >
-                                <div class="col-12 md:col-9">
-                                    <input
-                                        class="w-full"
-                                        pInputText
-                                        id="phone"
-                                        type="text"
-                                        placeholder="Phone"
-                                        formControlName="Phone"
-                                    />
-                                </div>
-                            </div>
-                            <div class="field grid">
-                                <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >First name</label
+                                    >First name<span style="color: red"
+                                        >*</span
+                                    ></label
                                 >
                                 <div class="col-12 md:col-9">
                                     <input
@@ -128,7 +72,9 @@
                             </div>
                             <div class="field grid">
                                 <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Last name</label
+                                    >Last name<span style="color: red"
+                                        >*</span
+                                    ></label
                                 >
                                 <div class="col-12 md:col-9">
                                     <input
@@ -143,7 +89,9 @@
                             </div>
                             <div class="field grid">
                                 <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Embg</label
+                                    >Embg<span style="color: red"
+                                        >*</span
+                                    ></label
                                 >
                                 <div class="col-12 md:col-9">
                                     <input
@@ -158,7 +106,9 @@
                             </div>
                             <div class="grid">
                                 <label class="col-12 mb-2 md:col-3 md:mb-0"
-                                    >Gender</label
+                                    >Gender<span style="color: red"
+                                        >*</span
+                                    ></label
                                 >
                                 <div class="col-12 md:col-9">
                                     <div
@@ -188,6 +138,85 @@
                                         ></p-radioButton>
                                         <label for="male">Male</label>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-fluid">
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Date of birth<span style="color: red"
+                                        >*</span
+                                    ></label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <p-calendar
+                                        class="w-full"
+                                        [showIcon]="true"
+                                        [showButtonBar]="true"
+                                        placeholder="Date of birth"
+                                        formControlName="DateOfBirth"
+                                    ></p-calendar>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Blood type<span style="color: red"
+                                        >*</span
+                                    ></label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <p-dropdown
+                                        class="w-full"
+                                        [options]="bloodTypes"
+                                        placeholder="Blood type"
+                                        [showClear]="true"
+                                    ></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Address<span style="color: red">*</span>
+                                </label>
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="address"
+                                        type="text"
+                                        placeholder="Address"
+                                        formControlName="Address"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Email<span style="color: red">*</span>
+                                </label>
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="email"
+                                        type="text"
+                                        placeholder="Email"
+                                        formControlName="Email"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Phone
+                                    <span style="color: red">*</span></label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="phone"
+                                        type="text"
+                                        placeholder="Phone"
+                                        formControlName="Phone"
+                                    />
                                 </div>
                             </div>
                         </div>
