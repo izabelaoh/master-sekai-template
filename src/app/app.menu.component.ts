@@ -104,7 +104,9 @@ export class AppMenuComponent implements OnInit {
             },
         ];
     }
-    onSubmit() {}
+    onSubmit() {
+        console.log(this.newPatientForm.getRawValue());
+    }
     onCancel() {}
     onKeydown(event: KeyboardEvent) {
         const nodeElement = <HTMLDivElement>event.target;

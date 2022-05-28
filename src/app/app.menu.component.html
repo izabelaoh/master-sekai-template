@@ -52,11 +52,41 @@
             <form [formGroup]="newPatientForm">
                 <div>
                     <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Date of birth</label
+                        >
+                        <div class="col-12 md:col-9">
+                            <p-calendar
+                                class="w-full"
+                                [showIcon]="true"
+                                [showButtonBar]="true"
+                                placeholder="Date of birth"
+                                formControlName="DateOfBirth"
+                            ></p-calendar>
+                        </div>
+                    </div>
+
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Blood type</label
+                        >
+                        <div class="col-12 md:col-9">
+                            <p-dropdown
+                                class="w-full"
+                                [options]="bloodTypes"
+                                placeholder="Blood type"
+                                [showClear]="true"
+                            ></p-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
                             >First name</label
                         >
-                        <div class="col-12 md:col-10">
+                        <div class="col-12 md:col-9">
                             <input
+                                class="w-full"
                                 pInputText
                                 id="firstName"
                                 type="text"
@@ -66,11 +96,12 @@
                         </div>
                     </div>
                     <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
                             >Last name</label
                         >
-                        <div class="col-12 md:col-10">
+                        <div class="col-12 md:col-9">
                             <input
+                                class="w-full"
                                 pInputText
                                 id="lastName"
                                 type="text"
@@ -80,11 +111,12 @@
                         </div>
                     </div>
                     <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
                             >Email</label
                         >
-                        <div class="col-12 md:col-10">
+                        <div class="col-12 md:col-9">
                             <input
+                                class="w-full"
                                 pInputText
                                 id="email"
                                 type="email"
@@ -94,9 +126,10 @@
                         </div>
                     </div>
                     <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0">Embg</label>
-                        <div class="col-12 md:col-10">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0">Embg</label>
+                        <div class="col-12 md:col-9">
                             <input
+                                class="w-full"
                                 pInputText
                                 id="embg"
                                 placeholder="Embg"
@@ -104,63 +137,46 @@
                             />
                         </div>
                     </div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
-                            >Date of birth</label
-                        >
-                        <div class="col-12 md:col-10">
-                            <p-calendar
-                                [showIcon]="true"
-                                [showButtonBar]="true"
-                                placeholder="Date of birth"
-                                formControlName="DateOfBirth"
-                            ></p-calendar>
-                        </div>
-                    </div>
 
                     <div class="grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
                             >Gender</label
                         >
-                        <div class="col-12 md:col-4">
-                            <div class="field-radiobutton mb-0">
+                        <div class="col-12 md:col-9">
+                            <div
+                                class="field-radiobutton mb-0"
+                                style="display: inline-flex"
+                            >
                                 <p-radioButton
-                                    name="gender"
+                                    formControlName="Gender"
+                                    name="Gender"
                                     value="female"
-                                    id="female"
+                                    inputId="female"
                                 ></p-radioButton>
                                 <label for="female">Female</label>
                             </div>
-                        </div>
-                        <div class="col-12 md:col-4">
-                            <div class="field-radiobutton">
+                            <div
+                                class="field-radiobutton"
+                                style="display: inline-flex; margin-left: 1rem"
+                            >
                                 <p-radioButton
-                                    name="gender"
+                                    formControlName="Gender"
+                                    name="Gender"
                                     value="Male"
-                                    id="male"
+                                    inputId="male"
                                 ></p-radioButton>
                                 <label for="male">Male</label>
                             </div>
                         </div>
                     </div>
+
                     <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
-                            >Blood type</label
-                        >
-                        <div class="col-12 md:col-10">
-                            <p-dropdown
-                                [options]="bloodTypes"
-                                placeholder="Blood type"
-                                [showClear]="true"
-                            ></p-dropdown>
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
                             >Address</label
                         >
-                        <div class="col-12 md:col-10">
+                        <div class="col-12 md:col-9">
                             <input
+                                class="w-full"
                                 pInputText
                                 id="address"
                                 type="text"
@@ -170,11 +186,12 @@
                         </div>
                     </div>
                     <div class="field grid">
-                        <label class="col-12 mb-2 md:col-2 md:mb-0"
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
                             >Phone</label
                         >
-                        <div class="col-12 md:col-10">
+                        <div class="col-12 md:col-9">
                             <input
+                                class="w-full"
                                 pInputText
                                 id="phone"
                                 placeholder="Phone"
