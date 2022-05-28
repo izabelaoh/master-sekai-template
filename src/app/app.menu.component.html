@@ -45,158 +45,151 @@
         [(visible)]="display"
         modal="modal"
         showEffect="fade"
-        [style]="{ width: '30vw' }"
+        [style]="{ width: '48vw', height: '100vw' }"
         [breakpoints]="{ '960px': '75vw' }"
     >
         <div>
             <form [formGroup]="newPatientForm">
-                <div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Date of birth</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <p-calendar
-                                class="w-full"
-                                [showIcon]="true"
-                                [showButtonBar]="true"
-                                placeholder="Date of birth"
-                                formControlName="DateOfBirth"
-                            ></p-calendar>
-                        </div>
-                    </div>
-
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Blood type</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <p-dropdown
-                                class="w-full"
-                                [options]="bloodTypes"
-                                placeholder="Blood type"
-                                [showClear]="true"
-                            ></p-dropdown>
-                        </div>
-                    </div>
-
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >First name</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <input
-                                class="w-full"
-                                pInputText
-                                id="firstName"
-                                type="text"
-                                placeholder="First name"
-                                formControlName="FirstName"
-                            />
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Last name</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <input
-                                class="w-full"
-                                pInputText
-                                id="lastName"
-                                type="text"
-                                placeholder="Last name"
-                                formControlName="LastName"
-                            />
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Email</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <input
-                                class="w-full"
-                                pInputText
-                                id="email"
-                                type="email"
-                                placeholder="Email"
-                                formControlName="Email"
-                            />
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0">Embg</label>
-                        <div class="col-12 md:col-9">
-                            <input
-                                class="w-full"
-                                pInputText
-                                id="embg"
-                                placeholder="Embg"
-                                formControlName="Embg"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Gender</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <div
-                                class="field-radiobutton mb-0"
-                                style="display: inline-flex"
-                            >
-                                <p-radioButton
-                                    formControlName="Gender"
-                                    name="Gender"
-                                    value="female"
-                                    inputId="female"
-                                ></p-radioButton>
-                                <label for="female">Female</label>
+                <div class="grid">
+                    <div class="col-12">
+                        <div class="card p-fluid">
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Date of birth</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <p-calendar
+                                        class="w-full"
+                                        [showIcon]="true"
+                                        [showButtonBar]="true"
+                                        placeholder="Date of birth"
+                                        formControlName="DateOfBirth"
+                                    ></p-calendar>
+                                </div>
                             </div>
-                            <div
-                                class="field-radiobutton"
-                                style="display: inline-flex; margin-left: 1rem"
-                            >
-                                <p-radioButton
-                                    formControlName="Gender"
-                                    name="Gender"
-                                    value="Male"
-                                    inputId="male"
-                                ></p-radioButton>
-                                <label for="male">Male</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Address</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <input
-                                class="w-full"
-                                pInputText
-                                id="address"
-                                type="text"
-                                placeholder="Address"
-                                formControlName="Address"
-                            />
-                        </div>
-                    </div>
-                    <div class="field grid">
-                        <label class="col-12 mb-2 md:col-3 md:mb-0"
-                            >Phone</label
-                        >
-                        <div class="col-12 md:col-9">
-                            <input
-                                class="w-full"
-                                pInputText
-                                id="phone"
-                                placeholder="Phone"
-                                formControlName="Phone"
-                            />
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Blood type</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <p-dropdown
+                                        class="w-full"
+                                        [options]="bloodTypes"
+                                        placeholder="Blood type"
+                                        [showClear]="true"
+                                    ></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Address</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="address"
+                                        type="text"
+                                        placeholder="Address"
+                                        formControlName="Address"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Phone</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="phone"
+                                        type="text"
+                                        placeholder="Phone"
+                                        formControlName="Phone"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >First name</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="firstName"
+                                        type="text"
+                                        placeholder="First name"
+                                        formControlName="FirstName"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Last name</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="lastName"
+                                        type="text"
+                                        placeholder="Last name"
+                                        formControlName="LastName"
+                                    />
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Embg</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <input
+                                        class="w-full"
+                                        pInputText
+                                        id="embg"
+                                        type="text"
+                                        placeholder="Embg"
+                                        formControlName="Embg"
+                                    />
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <label class="col-12 mb-2 md:col-3 md:mb-0"
+                                    >Gender</label
+                                >
+                                <div class="col-12 md:col-9">
+                                    <div
+                                        class="field-radiobutton mb-0"
+                                        style="display: inline-flex"
+                                    >
+                                        <p-radioButton
+                                            formControlName="Gender"
+                                            name="Gender"
+                                            value="female"
+                                            inputId="female"
+                                        ></p-radioButton>
+                                        <label for="female">Female</label>
+                                    </div>
+                                    <div
+                                        class="field-radiobutton"
+                                        style="
+                                            display: inline-flex;
+                                            margin-left: 1rem;
+                                        "
+                                    >
+                                        <p-radioButton
+                                            formControlName="Gender"
+                                            name="Gender"
+                                            value="Male"
+                                            inputId="male"
+                                        ></p-radioButton>
+                                        <label for="male">Male</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
