@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SelectItem } from 'primeng/api';
+import { Message, SelectItem } from 'primeng/api';
 @Component({
     selector: 'app-new-patient',
-    templateUrl: './newPatient.component.html',
+    templateUrl: './new-patient.component.html',
+    styleUrls: ['./new-patient.component.scss'],
 })
 export class NewPatientComponentnent {
     constructor(
@@ -15,6 +16,7 @@ export class NewPatientComponentnent {
     bloodTypes: SelectItem[];
     genderTypes: SelectItem[];
     foreignPatientTypes: SelectItem[];
+    msgs: Message[] = [];
 
     newPatientForm: FormGroup = new FormGroup({
         FirstName: new FormControl('', [Validators.required]),
@@ -34,12 +36,15 @@ export class NewPatientComponentnent {
         ForeignPatient: new FormControl('', [Validators.required]),
 
         Address: new FormControl('', [Validators.required]),
-        Email: new FormControl('', [Validators.required]),
-        Phone: new FormControl('', [Validators.required]),
+        Email: new FormControl(''),
+        Phone: new FormControl(''),
     });
     onSubmit() {
-        if (this.newPatientForm.invalid) {
-            console.log('All fields are required');
+        let errorMessage: string = '';
+
+        if (!this.newPatientForm.valid) {
+            errorMessage = 'Fill the required fields!';
+            this.showVlidationError(errorMessage);
             return;
         }
 
@@ -54,10 +59,20 @@ export class NewPatientComponentnent {
                 this.router.navigate([`/main/patient-profile/${patientId}`]);
             })
             .catch(() => {
-                console.log('Server error! Try again.');
+                errorMessage = 'Server error! Try again.';
+                this.showVlidationError(errorMessage);
+                return;
             });
     }
-    onCancel() {}
+    showVlidationError(message: string) {
+        this.msgs = [];
+        this.msgs.push({
+            severity: 'error',
+            summary: 'Error Message',
+            detail: message,
+        });
+    }
+
     ngOnInit() {
         this.bloodTypes = [
             {

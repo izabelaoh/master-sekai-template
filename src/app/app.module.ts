@@ -148,7 +148,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AppLoginComponent } from './pages/auth/login/login.component';
 import { LoginComponent } from './components/login/login.component';
-import { NewPatientComponentnent } from './pages/main/newPatient/newPatient.component';
+import { NewPatientComponentnent } from './pages/main/new-patient/new-patient.component';
+import { PatientProfileComponent } from './pages/main/patient-profile/patient-profile.component';
 
 @NgModule({
     imports: [
@@ -297,6 +298,7 @@ import { NewPatientComponentnent } from './pages/main/newPatient/newPatient.comp
         MainComponent,
         DashboardComponent,
         NewPatientComponentnent,
+        PatientProfileComponent,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
