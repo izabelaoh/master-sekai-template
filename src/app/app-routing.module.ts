@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/main/dashboard/dashboard.component';
 import { MainComponent } from './pages/main/main.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { AppLoginComponent } from './pages/auth/login/login.component';
+import { NewPatientComponentnent } from './pages/main/newPatient/newPatient.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,10 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent,
+            },
+            {
+                path: 'new-patient',
+                component: NewPatientComponentnent,
             },
         ],
     },

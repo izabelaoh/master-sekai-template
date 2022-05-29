@@ -1,0 +1,284 @@
+<div>
+    <form [formGroup]="newPatientForm">
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <div class="card p-fluid">
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >First name<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="firstName"
+                                type="text"
+                                placeholder="First name"
+                                formControlName="FirstName"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Last name<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="lastName"
+                                type="text"
+                                placeholder="Last name"
+                                formControlName="LastName"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Personal No.<span style="color: red"
+                                >*</span
+                            ></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="personalNo"
+                                type="text"
+                                placeholder="Personal no."
+                                formControlName="PersonalNo"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >ID number<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="idNumber"
+                                type="text"
+                                placeholder="ID number"
+                                formControlName="IDnumber"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Gender<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <p-dropdown
+                                class="w-full"
+                                placeholder="Gender"
+                                [showClear]="true"
+                                [options]="genderTypes"
+                            ></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6">
+                <div class="card p-fluid">
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Father's name<span style="color: red"
+                                >*</span
+                            ></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="fatherName"
+                                type="text"
+                                placeholder="Father's name"
+                                formControlName="FatherName"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Mather's name<span style="color: red"
+                                >*</span
+                            ></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="matherName"
+                                type="text"
+                                placeholder="Mather's name"
+                                formControlName="MatherName"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Nationality<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="nationality"
+                                type="text"
+                                placeholder="Nationality"
+                                formControlName="Nationality"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Place of birth<span style="color: red"
+                                >*</span
+                            ></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="placeOfBirth"
+                                type="text"
+                                placeholder="Place of birth"
+                                formControlName="PlaceOfBirth"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Country<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="country"
+                                type="text"
+                                placeholder="Country"
+                                formControlName="Country"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6">
+                <div class="card p-fluid">
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Date of birth<span style="color: red"
+                                >*</span
+                            ></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <p-calendar
+                                class="w-full"
+                                [showIcon]="true"
+                                [showButtonBar]="true"
+                                placeholder="Date of birth"
+                                formControlName="DateOfBirth"
+                            ></p-calendar>
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Blood type<span style="color: red">*</span></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <p-dropdown
+                                class="w-full"
+                                placeholder="Blood type"
+                                [showClear]="true"
+                                [options]="bloodTypes"
+                            ></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Foreign patient<span style="color: red"
+                                >*</span
+                            ></label
+                        >
+                        <div class="col-12 md:col-9">
+                            <p-dropdown
+                                class="w-full"
+                                placeholder="Foreign patient"
+                                [showClear]="true"
+                                [options]="foreignPatientTypes"
+                            ></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-6">
+                <div class="card p-fluid">
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Address<span style="color: red">*</span>
+                        </label>
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="address"
+                                type="text"
+                                placeholder="Address"
+                                formControlName="Address"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Email
+                        </label>
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="email"
+                                type="text"
+                                placeholder="Email"
+                                formControlName="Email"
+                            />
+                        </div>
+                    </div>
+                    <div class="field grid">
+                        <label class="col-12 mb-2 md:col-3 md:mb-0"
+                            >Phone
+                        </label>
+                        <div class="col-12 md:col-9">
+                            <input
+                                class="w-full"
+                                pInputText
+                                id="phone"
+                                type="text"
+                                placeholder="Phone"
+                                formControlName="Phone"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div style="text-align: right; margin-right: -6px; margin-bottom: 14px">
+        <button
+            pButton
+            pRipple
+            label="Cancel"
+            class="p-button-raised p-button-warning mr-2 mb-2"
+            (click)="onCancel()"
+        ></button>
+        <button
+            pButton
+            pRipple
+            label="Submit"
+            icon="pi pi-bookmark"
+            class="p-button-help mr-2 mb-2"
+            (click)="onSubmit()"
+        ></button>
+    </div>
+</div>
