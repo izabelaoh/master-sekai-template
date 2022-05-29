@@ -43,7 +43,7 @@ export class NewPatientComponentnent {
         let errorMessage: string = '';
 
         if (!this.newPatientForm.valid) {
-            errorMessage = 'Fill the required fields!';
+            errorMessage = 'Please fill the required fields!';
             this.showVlidationError(errorMessage);
             return;
         }
