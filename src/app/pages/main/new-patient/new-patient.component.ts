@@ -39,7 +39,7 @@ export class NewPatientComponentnent {
         Email: new FormControl(''),
         Phone: new FormControl(''),
     });
-    onSubmit() {
+    onSave() {
         let errorMessage: string = '';
 
         if (!this.newPatientForm.valid) {

@@ -1,0 +1,42 @@
+.information {
+    padding: 3px;
+    border-bottom: 1px solid silver;
+}
+
+.label {
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.value {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.info-icon {
+    width: 50px !important;
+    font-size: 25px !important;
+    text-align: center !important;
+}
+
+.new-examination {
+    text-align: right;
+}
+
+.table td {
+    padding: 7px 20px !important;
+}
+
+.patient-profile {
+    width: 60%;
+    display: block;
+    margin: auto;
+    border-radius: 25px;
+}
+.patient-name-container {
+    text-align: center;
+    margin-top: 12px;
+}
+.btn-new-examination-container {
+    margin-top: 12px;
+}
