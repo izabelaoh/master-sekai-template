@@ -46,11 +46,11 @@ export class AppLoginComponent implements OnInit, OnDestroy {
         private angularAuth: AngularFireAuth,
         private firestore: AngularFirestore,
         private router: Router
-    ) {}
+    ) { }
 
     loginForm = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required]),
+        email: new FormControl('admin@sakai.com', [Validators.required, Validators.email]),
+        password: new FormControl('admin@sakai.com', [Validators.required]),
     });
 
     ngOnInit(): void {

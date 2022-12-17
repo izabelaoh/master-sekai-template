@@ -1,8 +1,18 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Message, SelectItem } from 'primeng/api';
+import { Observable, tap } from 'rxjs';
+import { BLOOD_TYPES } from 'src/app/shared/mock/mock-data';
+import { IBloodType, IForeignPatientType, IGender } from 'src/app/shared/models/mock-data/mock-data';
+import { IPatient } from 'src/app/shared/models/patient/patient.model';
+import { MockDataService } from 'src/app/shared/services/mock-data/mock-data.service';
+
+import * as moment from 'moment';
+import { v4 } from 'uuid'
+
 @Component({
     selector: 'app-new-patient',
     templateUrl: './new-patient.component.html',
@@ -11,11 +21,16 @@ import { Message, SelectItem } from 'primeng/api';
 export class NewPatientComponentnent {
     constructor(
         private angularFireStore: AngularFirestore,
-        public router: Router
-    ) {}
-    bloodTypes: SelectItem[];
-    genderTypes: SelectItem[];
-    foreignPatientTypes: SelectItem[];
+        private angularFireStorage: AngularFireStorage,
+        public router: Router,
+        public mockService: MockDataService
+    ) { }
+
+    bloodTypes: Observable<IBloodType[]> = this.mockService.getBloodTypes()
+    genderTypes: Observable<IGender[]> = this.mockService.getGender();
+    foreignPatientTypes: Observable<IForeignPatientType[]> = this.mockService.getForeignPatientTypes();
+
+    uploadedFile: any = null;
     msgs: Message[] = [];
 
     newPatientForm: FormGroup = new FormGroup({
@@ -26,19 +41,24 @@ export class NewPatientComponentnent {
         Gender: new FormControl(null, [Validators.required]),
 
         FatherName: new FormControl('', [Validators.required]),
-        MatherName: new FormControl('', [Validators.required]),
+        MotherName: new FormControl('', [Validators.required]),
         Nationality: new FormControl('', [Validators.required]),
         PlaceOfBirth: new FormControl('', [Validators.required]),
         Country: new FormControl('', [Validators.required]),
 
+        InsuranceUntil: new FormControl(null, [Validators.required]),
+
         DateOfBirth: new FormControl(null, [Validators.required]),
         BloodType: new FormControl(null, [Validators.required]),
+
         ForeignPatient: new FormControl('', [Validators.required]),
+        Passport: new FormControl('', [Validators.required]),
 
         Address: new FormControl('', [Validators.required]),
         Email: new FormControl(''),
         Phone: new FormControl(''),
     });
+
     onSave() {
         let errorMessage: string = '';
 
@@ -48,22 +68,29 @@ export class NewPatientComponentnent {
             return;
         }
 
-        let newPatient = this.newPatientForm.getRawValue();
+        const randomId = v4();
 
-        this.angularFireStore
-            .collection('patients')
-            .add(newPatient)
-            .then((dataRef) => {
-                let patientId = dataRef.id;
+        let newPatient: IPatient = this.newPatientForm.getRawValue();
 
-                this.router.navigate([`/main/patient-profile/${patientId}`]);
+        this.angularFireStorage.upload(randomId, this.uploadedFile)
+            .then(uploadedSnapshot => {
+                newPatient.ImageUrl = uploadedSnapshot.ref.fullPath
+
+                this.angularFireStore
+                    .collection<IPatient>('patients')
+                    .add(newPatient)
+                    .then((dataRef) => {
+                        this.router.navigate([`/main/patient-profile/${dataRef.id}`]);
+                    })
+                    .catch(() => {
+                        errorMessage = 'Server error! Try again.';
+                        this.showVlidationError(errorMessage);
+                        return;
+                    });
             })
-            .catch(() => {
-                errorMessage = 'Server error! Try again.';
-                this.showVlidationError(errorMessage);
-                return;
-            });
+
     }
+
     showVlidationError(message: string) {
         this.msgs = [];
         this.msgs.push({
@@ -73,60 +100,16 @@ export class NewPatientComponentnent {
         });
     }
 
+    onUpload(data): void {
+        this.uploadedFile = data.currentFiles[0];
+        console.log(this.uploadedFile)
+    }
+
     ngOnInit() {
-        this.bloodTypes = [
-            {
-                label: 'A+',
-                value: { id: 1, name: 'A+', code: 'А' },
-            },
-            {
-                label: 'A-',
-                value: { id: 2, name: 'A-', code: 'А-' },
-            },
-            {
-                label: 'B+',
-                value: { id: 3, name: 'B+', code: 'B+' },
-            },
-            {
-                label: 'B-',
-                value: { id: 4, name: 'B-', code: 'B-' },
-            },
-            {
-                label: 'О+',
-                value: { id: 5, name: 'O+', code: 'O+' },
-            },
-            {
-                label: 'O-',
-                value: { id: 6, name: 'O-', code: 'O-' },
-            },
-            {
-                label: 'AB+',
-                value: { id: 7, name: 'AB+', code: 'AB+' },
-            },
-            {
-                label: 'AB-',
-                value: { id: 8, name: 'AB-', code: 'AB-' },
-            },
-        ];
-        this.genderTypes = [
-            {
-                label: 'Female',
-                value: { id: 1, name: 'female', code: 'female' },
-            },
-            {
-                label: 'Male',
-                value: { id: 2, name: 'male', code: 'male' },
-            },
-        ];
-        this.foreignPatientTypes = [
-            {
-                label: 'Yes',
-                value: { id: 1, name: 'yes', code: 'yes' },
-            },
-            {
-                label: 'No',
-                value: { id: 2, name: 'no', code: 'no' },
-            },
-        ];
+        this.newPatientForm.controls.DateOfBirth.valueChanges
+            .pipe(
+                tap(d => console.log(d))
+            )
+            .subscribe()
     }
 }

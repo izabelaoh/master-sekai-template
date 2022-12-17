@@ -6,6 +6,11 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { AppLoginComponent } from './pages/auth/login/login.component';
 import { NewPatientComponentnent } from './pages/main/new-patient/new-patient.component';
 import { PatientProfileComponent } from './pages/main/patient-profile/patient-profile.component';
+import { PersonalInfoComponent } from './pages/main/patient-profile/components/personal/personal.component';
+import { ExaminationsComponent } from './pages/main/patient-profile/components/examinations/examinations.component';
+import { CovidExaminationsComponent } from './pages/main/patient-profile/components/covid-examinations/covid-examinations.component';
+import { PatientSearchComponent } from './pages/main/patient-search/patient-search.component';
+import { EditPatientComponent } from './pages/main/edit-patient/edit-patient.component';
 
 const routes: Routes = [
     {
@@ -31,8 +36,40 @@ const routes: Routes = [
                 component: NewPatientComponentnent,
             },
             {
+                path: 'edit-patient/:id',
+                component: EditPatientComponent,
+            },
+            {
+                path: 'patients',
+                component: PatientSearchComponent,
+            },
+            {
                 path: 'patient-profile/:id',
                 component: PatientProfileComponent,
+                children: [
+                    {
+                        path: 'personal',
+                        component: PersonalInfoComponent
+                    },
+                    {
+                        path: 'examinations',
+                        component: ExaminationsComponent
+                    },
+                    {
+                        path: 'covid-examinations',
+                        component: CovidExaminationsComponent
+                    },
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'personal'
+                    },
+                    {
+                        path: '**',
+                        pathMatch: 'full',
+                        redirectTo: 'personal'
+                    },
+                ]
             },
         ],
     },
@@ -43,4 +80,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

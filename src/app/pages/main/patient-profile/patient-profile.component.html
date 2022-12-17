@@ -8,17 +8,22 @@
     </head>
 </html>
 <body>
-    <div class="grid p-fluid">
+    <div class="grid p-fluid" *ngIf="patient$ | async as patient">
         <div class="col-12 md:col-3">
             <div class="card">
                 <h5>Patient Profile</h5>
                 <img
-                    src="assets/layout/images/man.jpg"
+                    [src]="patient.ImageUrl"
                     alt="Patient Profile Image"
                     class="patient-profile"
                 />
                 <div class="patient-name-container">
-                    <div class="patient-name">Жанко Митрески</div>
+                    <div class="patient-name">
+                        {{ patient.FirstName }} {{ patient.LastName }}
+                    </div>
+                    <div class="patient-id">
+                        {{ patient.IDnumber }}
+                    </div>
                 </div>
                 <div class="btn-new-examination-container">
                     <button
@@ -26,70 +31,33 @@
                         pRipple
                         icon="pi pi-plus"
                         type="button"
-                        label="Add new examination"
+                        label="New examination"
                         class="p-button-raised p-button-success mr-2 mb-2"
                     ></button>
+                    <button
+                        pButton
+                        pRipple
+                        icon="pi pi-pencil"
+                        type="button"
+                        label="Edit profile"
+                        class="p-button-raised p-button-help mr-2 mb-2"
+                        (click)="editPatient(patient)"
+                    ></button>
                 </div>
             </div>
+
+            <p-messages [value]="insuranceMessages"></p-messages>
         </div>
+
         <div class="col-12 md:col-9">
             <div class="card">
-                <h5>Actions</h5>
                 <div>
-                    <button
-                        pButton
-                        icon="pi pi-eye"
-                        style="width: auto"
-                        label="Patient Profile"
-                        class="p-button-help mr-2 mb-2"
-                    ></button>
-                    <button
-                        pButton
-                        icon="pi pi-eye"
-                        style="width: auto"
-                        label="All examinations"
-                        class="p-button-help mr-2 mb-2"
-                    ></button>
-                    <button
-                        pButton
-                        icon="pi pi-eye"
-                        style="width: auto"
-                        label="New examination"
-                        class="p-button-help mr-2 mb-2"
-                    ></button>
-                    <button
-                        pButton
-                        icon="pi pi-eye"
-                        style="width: auto"
-                        label="COVID-19 examination"
-                        class="p-button-help mr-2 mb-2"
-                    ></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-12"></div>
+                    <p-tabMenu
+                        styleClass="mb-5"
+                        [model]="patientTabs$ | async"
+                    ></p-tabMenu>
 
-        <div class="col-12 md:col-3">
-            <div class="card">
-                <h5>General patient information</h5>
-
-                <div class="patient-information">
-                    <div class="information">
-                        <div class="flex-center">
-                            <div class="info-icon">
-                                <i
-                                    class="fa fa-mars-double"
-                                    style="font-size: 48px; color: red"
-                                ></i>
-                            </div>
-                            <!-- <div class="flex-1">
-                                <div class="label text-primary">
-                                    Patient Name and Surname
-                                </div>
-                                <div class="value">123</div>
-                            </div> -->
-                        </div>
-                    </div>
+                    <router-outlet></router-outlet>
                 </div>
             </div>
         </div>

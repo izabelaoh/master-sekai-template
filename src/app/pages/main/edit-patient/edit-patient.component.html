@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="newPatientForm">
     <form [formGroup]="newPatientForm">
         <div class="grid">
             <div class="col-12 md:col-6">
@@ -299,7 +299,7 @@
             </div>
         </div>
 
-        <div class="grid">
+        <!-- <div class="grid">
             <div class="col-12">
                 <p-fileUpload
                     (onSelect)="onUpload($event)"
@@ -310,7 +310,7 @@
                 >
                 </p-fileUpload>
             </div>
-        </div>
+        </div> -->
         <div class="login-error-container">
             <p-messages [value]="msgs"></p-messages>
         </div>
@@ -322,7 +322,7 @@
             label="Save"
             icon="pi pi-save"
             class="p-button-help mr-2 mb-2"
-            (click)="onSave()"
+            (click)="onEdit()"
         ></button>
     </div>
 </div>

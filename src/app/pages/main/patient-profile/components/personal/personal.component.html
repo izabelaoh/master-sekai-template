@@ -1,0 +1,129 @@
+<div
+    class="grid"
+    *ngIf="{
+        patient: patient$ | async
+    } as data"
+>
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid" style="margin-bottom: 0">
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">First name</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.FirstName }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Last name</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.LastName }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Personal No.</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.PersonalNo }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Blood type</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.BloodType.name }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Gender</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Gender.name }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0"
+                    >Date of birth</label
+                >
+                <div class="col-12 md:col-7">
+                    {{ data.patient.DateOfBirth | date }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid" style="margin-bottom: 0">
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0"
+                    >Father's name</label
+                >
+                <div class="col-12 md:col-7">
+                    {{ data.patient.FatherName }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0"
+                    >Mother's name</label
+                >
+                <div class="col-12 md:col-7">
+                    {{ data.patient.MotherName }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Nationality</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Nationality }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0"
+                    >Place of birth</label
+                >
+                <div class="col-12 md:col-7">
+                    {{ data.patient.PlaceOfBirth }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Country</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Country }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Address </label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Address }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0"
+                    >Foreign patient</label
+                >
+                <div class="col-12 md:col-7">
+                    {{ data.patient.ForeignPatient.name }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Passport</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Passport }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Email</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Email }}
+                </div>
+            </div>
+            <div class="field grid">
+                <label class="col-12 mb-2 md:col-5 md:mb-0">Phone</label>
+                <div class="col-12 md:col-7">
+                    {{ data.patient.Phone }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

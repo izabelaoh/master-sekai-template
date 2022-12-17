@@ -144,12 +144,19 @@ import { MainComponent } from './pages/main/main.component';
 import { environment } from 'src/environments/environment';
 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AppLoginComponent } from './pages/auth/login/login.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewPatientComponentnent } from './pages/main/new-patient/new-patient.component';
 import { PatientProfileComponent } from './pages/main/patient-profile/patient-profile.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ExaminationsComponent } from './pages/main/patient-profile/components/examinations/examinations.component';
+import { CovidExaminationsComponent } from './pages/main/patient-profile/components/covid-examinations/covid-examinations.component';
+import { PersonalInfoComponent } from './pages/main/patient-profile/components/personal/personal.component';
+import { PatientSearchComponent } from './pages/main/patient-search/patient-search.component';
+import { EditPatientComponent } from './pages/main/edit-patient/edit-patient.component';
 
 @NgModule({
     imports: [
@@ -243,11 +250,13 @@ import { PatientProfileComponent } from './pages/main/patient-profile/patient-pr
 
         ReactiveFormsModule,
 
+        NgxUiLoaderModule,
+
         AngularFireModule.initializeApp(environment.firebase),
         // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
         AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-        // AngularFireStorageModule, // imports firebase/storage only needed for storage features
+        AngularFireStorageModule, // imports firebase/storage only needed for storage features
     ],
     declarations: [
         AppComponent,
@@ -299,6 +308,11 @@ import { PatientProfileComponent } from './pages/main/patient-profile/patient-pr
         DashboardComponent,
         NewPatientComponentnent,
         PatientProfileComponent,
+        PersonalInfoComponent,
+        ExaminationsComponent,
+        CovidExaminationsComponent,
+        PatientSearchComponent,
+        EditPatientComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -314,4 +328,4 @@ import { PatientProfileComponent } from './pages/main/patient-profile/patient-pr
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

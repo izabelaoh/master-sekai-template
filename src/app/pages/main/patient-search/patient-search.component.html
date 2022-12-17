@@ -1,0 +1,106 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-table
+                #dt
+                [value]="patients$ | async"
+                [columns]="cols"
+                responsiveLayout="scroll"
+                [rows]="10"
+                [globalFilterFields]="[
+                    'FirstName',
+                    'LastName',
+                    'FatherName',
+                    'PersonalNo',
+                    'IDnumber'
+                ]"
+                [rows]="10"
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 20, 30]"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} patients"
+                [rowHover]="true"
+                dataKey="id"
+            >
+                <ng-template pTemplate="caption">
+                    <div
+                        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                    >
+                        <h5 class="m-0">Search Patients</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input
+                                pInputText
+                                type="text"
+                                (input)="
+                                    dt.filterGlobal(
+                                        $event.target.value,
+                                        'contains'
+                                    )
+                                "
+                                placeholder="Search..."
+                            />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="FirstName">
+                            Patient Name
+                            <p-sortIcon field="FirstName"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="FatherName">
+                            Father Name
+                            <p-sortIcon field="FatherName"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="PersonalNo">
+                            Personal No.
+                            <p-sortIcon field="PersonalNo"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="IDnumber">
+                            ID Number <p-sortIcon field="IDnumber"></p-sortIcon>
+                        </th>
+                        <th>Gender</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-patient>
+                    <tr>
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Patient Name</span>
+                            {{ patient.FirstName }} {{ patient.LastName }}
+                        </td>
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Father Name</span>
+                            {{ patient.FatherName }}
+                        </td>
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Personal No.</span>
+                            {{ patient.PersonalNo }}
+                        </td>
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">ID Number</span>
+                            {{ patient.IDnumber }}
+                        </td>
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Gender</span>
+                            {{ patient.Gender.name }}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button
+                                    pButton
+                                    pRipple
+                                    class="p-button-raised p-button-primary"
+                                    (click)="viewPatient(patient)"
+                                >
+                                    view
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

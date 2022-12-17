@@ -14,7 +14,7 @@ export class AppMenuComponent implements OnInit {
     display: boolean;
     menuItems: MenuItem[];
 
-    constructor(public router: Router, public appMain: MainComponent) {}
+    constructor(public router: Router, public appMain: MainComponent) { }
 
     goToNewPatient() {
         this.router.navigate(['main/new-patient']);
@@ -28,7 +28,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Dashboard',
                         icon: 'pi pi-fw pi-home',
-                        routerLink: ['./dashboard'],
+                        routerLink: ['dashboard'],
                     },
                 ],
             },
@@ -38,7 +38,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Search Patients',
                         icon: 'pi pi-search',
-                        routerLink: ['/uikit/formlayout'],
+                        routerLink: ['patients'],
                     },
                     {
                         label: 'COVID-19 Statistics',
