@@ -11,7 +11,7 @@
     <div class="grid p-fluid" *ngIf="patient$ | async as patient">
         <div class="col-12 md:col-3">
             <div class="card">
-                <h5>Patient Profile</h5>
+                <!-- <h5>Patient Profile</h5> -->
                 <img
                     [src]="patient.ImageUrl"
                     alt="Patient Profile Image"
@@ -33,6 +33,7 @@
                         type="button"
                         label="New examination"
                         class="p-button-raised p-button-success mr-2 mb-2"
+                        (click)="createExamination(patient)"
                     ></button>
                     <button
                         pButton

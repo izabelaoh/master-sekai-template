@@ -1,0 +1,54 @@
+[
+    {
+        "name": "General Medicine",
+        "code": "GM"
+    },
+    {
+        "name": "Anesthetics",
+        "code": "AN"
+    },
+    {
+        "name": "Cardiology",
+        "code": "CA"
+    },
+    {
+        "name": "Ear, Nose and Throat",
+        "code": "ENT"
+    },
+    {
+        "name": "Gastroenterology",
+        "code": "GA"
+    },
+    {
+        "name": "General Surgery",
+        "code": "GS"
+    },
+    {
+        "name": "Gynecology",
+        "code": "GY"
+    },
+    {
+        "name": "Hematology",
+        "code": "HE"
+    },
+    {
+        "name": "Neurology",
+        "code": "NE"
+    },
+    {
+        "name": "Oncology",
+        "code": "ON"
+    },
+    {
+        "name": "Ophtalmology",
+        "code": "OP"
+    },
+    {
+        "name": "Orthopedics",
+        "code": "OR"
+    },
+    {
+        "name": "Physiotherapy",
+        "code": "PH"
+    }
+]

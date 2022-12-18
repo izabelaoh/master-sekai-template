@@ -157,6 +157,11 @@ import { CovidExaminationsComponent } from './pages/main/patient-profile/compone
 import { PersonalInfoComponent } from './pages/main/patient-profile/components/personal/personal.component';
 import { PatientSearchComponent } from './pages/main/patient-search/patient-search.component';
 import { EditPatientComponent } from './pages/main/edit-patient/edit-patient.component';
+import { ExaminationComponent } from './pages/main/examination/examination.component';
+import { DiagnosesComponent } from './pages/main/examination/diagnoses/diagnoses.component';
+import { TherapiesComponent } from './pages/main/examination/therapies/therapies.component';
+import { GeneralInfoComponent } from './pages/main/examination/general-info/general-info.component';
+import { VaccinationComponent } from './pages/main/examination/vaccination/vaccination.component';
 
 @NgModule({
     imports: [
@@ -312,7 +317,12 @@ import { EditPatientComponent } from './pages/main/edit-patient/edit-patient.com
         ExaminationsComponent,
         CovidExaminationsComponent,
         PatientSearchComponent,
-        EditPatientComponent
+        EditPatientComponent,
+        ExaminationComponent,
+        DiagnosesComponent,
+        TherapiesComponent,
+        GeneralInfoComponent,
+        VaccinationComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

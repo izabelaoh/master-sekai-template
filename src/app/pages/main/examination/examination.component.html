@@ -1,0 +1,39 @@
+<div
+    class="p-fluid"
+    *ngIf="{
+        examination: examination$ | async
+    } as data"
+>
+    <form [formGroup]="examinationForm">
+        <div class="col-12 md-col-6">
+            <app-general-info
+                [examinationForm]="examinationForm"
+            ></app-general-info>
+        </div>
+
+        <div class="col-12">
+            <app-diagnoses></app-diagnoses>
+        </div>
+
+        <!--
+        <div class="col-12">
+            <app-therapies></app-therapies>
+        </div>
+
+        <div class="col-12">
+            <app-vaccination></app-vaccination>
+        </div> -->
+
+        <div class="col-12">
+            <button
+                pButton
+                pRipple
+                icon="pi pi-plus"
+                type="button"
+                label="Create Examination"
+                class="p-button-raised p-button-success mr-2 mb-2"
+                (click)="createExamination()"
+            ></button>
+        </div>
+    </form>
+</div>

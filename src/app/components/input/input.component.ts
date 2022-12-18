@@ -48,7 +48,7 @@ import { SelectItem } from 'primeng/api';
 
     `]
 })
-export class InputComponent implements OnInit{
+export class InputComponent implements OnInit {
     countries: any[];
 
     filteredCountries: any[];
@@ -87,27 +87,28 @@ export class InputComponent implements OnInit{
 
     valueKnob = 20;
 
-    selectedDate:any;
+    selectedDate: any;
 
-    constructor(private countryService: CountryService, private nodeService: NodeService) {}
+    constructor(private countryService: CountryService, private nodeService: NodeService) { }
 
     ngOnInit() {
         this.countryService.getCountries().then(countries => {
+            console.log(countries)
             this.countries = countries;
         });
 
         this.cities = [
-            {label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}},
-            {label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}},
-            {label: 'London', value: {id: 3, name: 'London', code: 'LDN'}},
-            {label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}},
-            {label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}}
+            { label: 'New York', value: { id: 1, name: 'New York', code: 'NY' } },
+            { label: 'Rome', value: { id: 2, name: 'Rome', code: 'RM' } },
+            { label: 'London', value: { id: 3, name: 'London', code: 'LDN' } },
+            { label: 'Istanbul', value: { id: 4, name: 'Istanbul', code: 'IST' } },
+            { label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } }
         ];
 
         this.paymentOptions = [
-            {name: 'Option 1', value: 1},
-            {name: 'Option 2', value: 2},
-            {name: 'Option 3', value: 3}
+            { name: 'Option 1', value: 1 },
+            { name: 'Option 2', value: 2 },
+            { name: 'Option 3', value: 3 }
         ];
 
         this.nodeService.getFiles().then(files => this.treeSelectNodes = files)

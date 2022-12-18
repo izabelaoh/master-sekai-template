@@ -11,6 +11,9 @@ import { ExaminationsComponent } from './pages/main/patient-profile/components/e
 import { CovidExaminationsComponent } from './pages/main/patient-profile/components/covid-examinations/covid-examinations.component';
 import { PatientSearchComponent } from './pages/main/patient-search/patient-search.component';
 import { EditPatientComponent } from './pages/main/edit-patient/edit-patient.component';
+import { ExaminationComponent } from './pages/main/examination/examination.component';
+import { DocumentationComponent } from './components/documentation/documentation.component';
+import { InputComponent } from './components/input/input.component';
 
 const routes: Routes = [
     {
@@ -22,6 +25,10 @@ const routes: Routes = [
                 component: AppLoginComponent,
             },
         ],
+    },
+    {
+        path: 'docs',
+        component: InputComponent,
     },
     {
         path: 'main',
@@ -54,6 +61,10 @@ const routes: Routes = [
                     {
                         path: 'examinations',
                         component: ExaminationsComponent
+                    },
+                    {
+                        path: 'new-examination/:examinationId',
+                        component: ExaminationComponent
                     },
                     {
                         path: 'covid-examinations',

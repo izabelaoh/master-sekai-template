@@ -1,0 +1,146 @@
+<div class="card" [formGroup]="diagnosesForm">
+    <h5>Diagnoses</h5>
+    <p-table
+        #dt
+        [value]="[]"
+        responsiveLayout="scroll"
+        [rows]="10"
+        [globalFilterFields]="['DiagnoseName']"
+        [rows]="10"
+        [paginator]="true"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} diagnoses"
+        [rowHover]="true"
+        dataKey="id"
+    >
+        <ng-template pTemplate="caption">
+            <div
+                class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                style="gap: 0.5rem"
+            >
+                <span class="block mt-2 md:mt-0 p-input-icon-left">
+                    <ng-container *ngIf="!addMode">
+                        <i class="pi pi-search"></i>
+                        <input
+                            pInputText
+                            type="text"
+                            (input)="
+                                dt.filterGlobal($event.target.value, 'contains')
+                            "
+                            placeholder="Search added diagnoses..."
+                        />
+                    </ng-container>
+
+                    <ng-container *ngIf="addMode">
+                        <p-autoComplete
+                            placeholder="Search new diagnose..."
+                            id="dd"
+                            [dropdown]="true"
+                            [multiple]="false"
+                            [suggestions]="filteredDiagnoses$ | async"
+                            (completeMethod)="filterDiagnoses($event)"
+                            field="name"
+                            formControlName="Diagnose"
+                        ></p-autoComplete>
+                    </ng-container>
+                </span>
+                <span class="block mt-2 md:mt-0">
+                    <ng-container *ngIf="!addMode">
+                        <button
+                            pButton
+                            pRipple
+                            type="button"
+                            icon="pi pi-plus"
+                            class="p-button-rounded"
+                            (click)="addMode = true"
+                        ></button>
+                    </ng-container>
+
+                    <ng-container *ngIf="addMode">
+                        <div
+                            class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                            style="gap: 0.5rem"
+                        >
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                icon="pi pi-check"
+                                class="p-button-rounded p-button-success"
+                                (click)="submitNewDiagnose()"
+                            ></button>
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                icon="pi pi-times"
+                                class="p-button-rounded p-button-secondary"
+                                (click)="addMode = false"
+                            ></button>
+                        </div>
+                    </ng-container>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="DiagnoseName">
+                    Diagnose
+                    <p-sortIcon field="DiagnoseName"></p-sortIcon>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-diagnose>
+            <tr>
+                <td style="min-width: 10rem">
+                    <span class="p-column-title">Diagnose</span>
+                    {{ diagnose.name }}
+                </td>
+                <td>
+                    <div class="flex">
+                        <button
+                            pButton
+                            pRipple
+                            class="p-button-raised p-button-primary"
+                        >
+                            view
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- <p-dialog
+    header="Add diagnose"
+    [(visible)]="addMode"
+    modal="modal"
+    showEffect="fade"
+    [style]="{ width: '40vw', height: '45vh' }"
+    [breakpoints]="{ '960px': '75vw' }"
+>
+    <p class="line-height-3 m-0">
+        <p-autoComplete
+            placeholder="Search diagnose"
+            id="dd"
+            [dropdown]="true"
+            [multiple]="false"
+            [suggestions]="filteredDiagnoses$ | async"
+            (completeMethod)="filterDiagnoses($event)"
+            field="name"
+            formControlName="Diagnoses"
+        ></p-autoComplete>
+    </p>
+    <ng-template pTemplate="footer">
+        <button
+            pButton
+            icon="pi pi-check"
+            (click)="display = false"
+            label="Submit"
+            class="p-button-outlined"
+        ></button>
+    </ng-template>
+</p-dialog> -->

@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api';
-import { tap } from 'rxjs';
+import { first, tap } from 'rxjs';
+import { IExamination } from 'src/app/shared/models/examinations/examinations.model';
 import { IPatient } from 'src/app/shared/models/patient/patient.model';
+import { ExaminationService } from 'src/app/shared/services/examinations/examination.service';
 import { PatientService } from 'src/app/shared/services/patient/patient.service';
 
 @Component({
@@ -14,7 +17,9 @@ export class PatientProfileComponent {
     constructor(
         private patientService: PatientService,
         private activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private angularFireStore: AngularFirestore,
+        private examinationService: ExaminationService
     ) { }
 
     insuranceMessages: Message[] = [];
@@ -42,6 +47,22 @@ export class PatientProfileComponent {
 
     editPatient(patient: IPatient): void {
         this.router.navigate([`main/edit-patient/${patient.Id}`])
+    }
+
+    createExamination(patient: IPatient): void {
+        const examination: Partial<IExamination> = {
+            PatientId: patient.Id,
+            ExaminationDate: new Date(),
+        }
+
+        this.examinationService.createExamination(examination)
+            .pipe(
+                first(),
+                tap(examinationId => {
+                    this.router.navigate([`main/patient-profile/${patient.Id}/new-examination/${examinationId}`])
+                })
+            )
+            .subscribe()
     }
 
     ngOnInit() {
