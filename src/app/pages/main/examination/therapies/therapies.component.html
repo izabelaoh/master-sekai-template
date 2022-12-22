@@ -1,11 +1,11 @@
-<div class="card">
+<div class="card" [formGroup]="therapyForm">
     <h5>Therapies</h5>
     <p-table
         #dt
-        [value]="[]"
+        [value]="addedTherapies$ | async"
         responsiveLayout="scroll"
         [rows]="10"
-        [globalFilterFields]="['DiagnoseName']"
+        [globalFilterFields]="['name', 'code']"
         [rows]="10"
         [paginator]="true"
         [rowsPerPageOptions]="[10, 20, 30]"
@@ -20,51 +20,121 @@
                 style="gap: 0.5rem"
             >
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input
-                        pInputText
-                        type="text"
-                        (input)="
-                            dt.filterGlobal($event.target.value, 'contains')
-                        "
-                        placeholder="Search..."
-                    />
+                    <ng-container *ngIf="!addMode">
+                        <i class="pi pi-search"></i>
+                        <input
+                            pInputText
+                            type="text"
+                            (input)="
+                                dt.filterGlobal($event.target.value, 'contains')
+                            "
+                            placeholder="Search added therapies..."
+                        />
+                    </ng-container>
+
+                    <ng-container *ngIf="addMode">
+                        <div class="flex" style="gap: 0.5rem">
+                            <p-autoComplete
+                                placeholder="Search new therapy..."
+                                id="dd"
+                                [dropdown]="true"
+                                [multiple]="false"
+                                [suggestions]="filteredTherapies$ | async"
+                                (completeMethod)="filterTherapies($event)"
+                                field="name"
+                                formControlName="Therapy"
+                                class="flex-1"
+                            ></p-autoComplete>
+
+                            <input
+                                class="w-4"
+                                pInputText
+                                id="personalNo"
+                                type="text"
+                                placeholder="Amount"
+                                formControlName="Amount"
+                            />
+                        </div>
+                    </ng-container>
                 </span>
                 <span class="block mt-2 md:mt-0">
-                    <button
-                        pButton
-                        pRipple
-                        type="button"
-                        icon="pi pi-plus"
-                        class="p-button-rounded"
-                    ></button>
+                    <ng-container *ngIf="!addMode">
+                        <button
+                            pButton
+                            pRipple
+                            type="button"
+                            icon="pi pi-plus"
+                            class="p-button-rounded"
+                            (click)="addMode = true"
+                        ></button>
+                    </ng-container>
+
+                    <ng-container *ngIf="addMode">
+                        <div
+                            class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                            style="gap: 0.5rem"
+                        >
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                icon="pi pi-check"
+                                class="p-button-rounded p-button-success"
+                                (click)="submitNewTherapy()"
+                            ></button>
+                            <button
+                                pButton
+                                pRipple
+                                type="button"
+                                icon="pi pi-times"
+                                class="p-button-rounded p-button-secondary"
+                                (click)="addMode = false"
+                            ></button>
+                        </div>
+                    </ng-container>
                 </span>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="DiagnoseName">
-                    Therapy
-                    <p-sortIcon field="DiagnoseName"></p-sortIcon>
+                <th pSortableColumn="code">
+                    Code
+                    <p-sortIcon field="code"></p-sortIcon>
                 </th>
+                <th pSortableColumn="name">
+                    Therapy
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th>Amount</th>
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-diagnose>
+        <ng-template pTemplate="body" let-therapy>
             <tr>
+                <td style="min-width: 1rem">
+                    <span class="p-column-title">Code</span>
+                    {{ therapy.code || "/" }}
+                </td>
                 <td style="min-width: 10rem">
                     <span class="p-column-title">Therapy</span>
-                    {{ diagnose.name }}
+                    {{ therapy.name }}
+                </td>
+                <td style="min-width: 10rem">
+                    <span class="p-column-title">Amount</span>
+                    {{ therapy.amount }}
                 </td>
                 <td>
-                    <div class="flex">
+                    <div style="text-align: right">
                         <button
                             pButton
                             pRipple
-                            class="p-button-raised p-button-primary"
-                        >
-                            view
-                        </button>
+                            type="button"
+                            icon="pi pi-times"
+                            class="p-button-rounded p-button-danger p-button-text"
+                            style="width: 1.75rem; height: 1.75rem"
+                            (click)="removeTherapy(therapy)"
+                        ></button>
+                        <p-confirmPopup key="confirm2"></p-confirmPopup>
                     </div>
                 </td>
             </tr>

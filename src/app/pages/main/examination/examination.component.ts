@@ -17,9 +17,6 @@ export class ExaminationComponent implements OnInit {
         private activatedRoute: ActivatedRoute
     ) { }
 
-    examination: BehaviorSubject<IExamination> = new BehaviorSubject({} as IExamination)
-    examination$: Observable<IExamination> = this.examination.asObservable();
-
     examinationForm: FormGroup;
 
     createExamination(): void {
@@ -28,22 +25,22 @@ export class ExaminationComponent implements OnInit {
 
     ngOnInit(): void {
         const patientId: string = this.activatedRoute.snapshot.paramMap.get('id');
-        this.examinationService.getNewExamination(patientId)
+        const examinationId: string = this.activatedRoute.snapshot.paramMap.get('examinationId');
+
+        this.examinationService.getExaminationAsync(examinationId)
             .pipe(
                 first(),
                 tap(examination => {
                     console.log(examination)
 
-                    this.examination.next(examination);
-
                     this.examinationForm = new FormGroup({
                         PatientId: new FormControl(patientId),
                         ExaminationDate: new FormControl(examination.ExaminationDate),
-                        Department: new FormControl(null),
+                        Department: new FormControl(examination.Department),
                         IsCovidExamination: new FormControl(examination.IsCovidExamination),
-                        Diagnoses: new FormControl([]),
-                        Therapies: new FormControl([]),
-                        Vaccinations: new FormControl([])
+                        Diagnoses: new FormControl(examination.Diagnoses),
+                        Therapies: new FormControl(examination.Therapies),
+                        Vaccinations: new FormControl(examination.Vaccinations)
                     })
                 })
             )

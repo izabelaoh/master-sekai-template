@@ -1,0 +1,332 @@
+[
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "17300",
+                    "name": "alfuzosin",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00346",
+                    "name": "Alfuzosin",
+                    "url": "http://www.drugbank.ca/drugs/DB00346#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The metabolism of Alfuzosin can be decreased when combined with Ezetimibe."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "495881",
+                    "name": "sorafenib",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00398",
+                    "name": "Sorafenib",
+                    "url": "http://www.drugbank.ca/drugs/DB00398#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The metabolism of Ezetimibe can be decreased when combined with Sorafenib."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "3554",
+                    "name": "Disulfiram",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00822",
+                    "name": "Disulfiram",
+                    "url": "http://www.drugbank.ca/drugs/DB00822#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "Disulfiram may decrease the excretion rate of Ezetimibe which could result in a higher serum level."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "3322",
+                    "name": "Diazepam",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00829",
+                    "name": "Diazepam",
+                    "url": "http://www.drugbank.ca/drugs/DB00829#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The serum concentration of Ezetimibe can be increased when it is combined with Diazepam."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "10800",
+                    "name": "Trifluoperazine",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00831",
+                    "name": "Trifluoperazine",
+                    "url": "http://www.drugbank.ca/drugs/DB00831#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The serum concentration of Ezetimibe can be increased when it is combined with Trifluoperazine."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "1450910",
+                    "name": "Cefaclor Anhydrous",
+                    "tty": "PIN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00833",
+                    "name": "Cefaclor",
+                    "url": "http://www.drugbank.ca/drugs/DB00833#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "Cefaclor may decrease the excretion rate of Ezetimibe which could result in a higher serum level."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "2176",
+                    "name": "Cefaclor",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00833",
+                    "name": "Cefaclor",
+                    "url": "http://www.drugbank.ca/drugs/DB00833#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "Cefaclor may decrease the excretion rate of Ezetimibe which could result in a higher serum level."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "6964",
+                    "name": "Mifepristone",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00834",
+                    "name": "Mifepristone",
+                    "url": "http://www.drugbank.ca/drugs/DB00834#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The serum concentration of Ezetimibe can be increased when it is combined with Mifepristone."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "6468",
+                    "name": "Loperamide",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00836",
+                    "name": "Loperamide",
+                    "url": "http://www.drugbank.ca/drugs/DB00836#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The serum concentration of Ezetimibe can be increased when it is combined with Loperamide."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "2592",
+                    "name": "Clofazimine",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00845",
+                    "name": "Clofazimine",
+                    "url": "http://www.drugbank.ca/drugs/DB00845#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "Clofazimine may decrease the excretion rate of Ezetimibe which could result in a higher serum level."
+    },
+    {
+        "interactionConcept": [
+            {
+                "minConceptItem": {
+                    "rxcui": "341248",
+                    "name": "ezetimibe",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00973",
+                    "name": "Ezetimibe",
+                    "url": "http://www.drugbank.ca/drugs/DB00973#interactions"
+                }
+            },
+            {
+                "minConceptItem": {
+                    "rxcui": "8638",
+                    "name": "prednisolone",
+                    "tty": "IN"
+                },
+                "sourceConceptItem": {
+                    "id": "DB00860",
+                    "name": "Prednisolone",
+                    "url": "http://www.drugbank.ca/drugs/DB00860#interactions"
+                }
+            }
+        ],
+        "severity": "N/A",
+        "description": "The serum concentration of Ezetimibe can be increased when it is combined with Prednisolone."
+    }
+]

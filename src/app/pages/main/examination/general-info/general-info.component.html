@@ -1,38 +1,52 @@
-<div class="card" [formGroup]="examinationForm">
+<div class="card" *ngIf="generalInfoForm">
     <h4>General Examination Information</h4>
-    <div class="grid p-fluid">
-        <div class="col-12 md:col-6">
-            <h5>Examination date</h5>
-            <p-calendar
-                class="w-full"
-                [showIcon]="true"
-                [showButtonBar]="true"
-                placeholder="Examination Date"
-                formControlName="ExaminationDate"
-            ></p-calendar>
-        </div>
+    <form [formGroup]="generalInfoForm">
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-6">
+                <h5>Examination date</h5>
+                <p-calendar
+                    class="w-full"
+                    [showIcon]="true"
+                    [showButtonBar]="true"
+                    placeholder="Examination Date"
+                    formControlName="ExaminationDate"
+                ></p-calendar>
+            </div>
 
-        <div class="col-12 md:col-6">
-            <h5>Department</h5>
-            <p-autoComplete
-                placeholder="Department"
-                id="dd"
-                [dropdown]="true"
-                [multiple]="false"
-                [suggestions]="filteredDepartments$ | async"
-                (completeMethod)="filterDepartments($event)"
-                field="name"
-                formControlName="Department"
-            ></p-autoComplete>
-        </div>
+            <div class="col-12 md:col-6">
+                <h5>Department</h5>
+                <p-autoComplete
+                    placeholder="Department"
+                    id="dd"
+                    [dropdown]="true"
+                    [multiple]="false"
+                    [suggestions]="filteredDepartments$ | async"
+                    (completeMethod)="filterDepartments($event)"
+                    field="name"
+                    formControlName="Department"
+                ></p-autoComplete>
+            </div>
 
-        <div class="col-12 md:col-6">
-            <h5>COVID-19 examination?</h5>
-            <div>
-                <p-inputSwitch
-                    formControlName="IsCovidExamination"
-                ></p-inputSwitch>
+            <div class="col-12 md:col-6">
+                <h5>COVID-19 examination?</h5>
+                <div>
+                    <p-inputSwitch
+                        formControlName="IsCovidExamination"
+                    ></p-inputSwitch>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-6">
+                <button
+                    pButton
+                    pRipple
+                    icon="pi pi-plus"
+                    type="button"
+                    label="Save changes"
+                    class="p-button-raised p-button-success mr-2 mb-2"
+                    (click)="saveChanges()"
+                ></button>
             </div>
         </div>
-    </div>
+    </form>
 </div>

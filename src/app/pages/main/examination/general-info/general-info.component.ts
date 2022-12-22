@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, combineLatest, first, map } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { BehaviorSubject, combineLatest, first, map, tap } from 'rxjs';
 import { ExaminationService } from 'src/app/shared/services/examinations/examination.service';
 
 @Component({
@@ -15,6 +15,8 @@ export class GeneralInfoComponent implements OnInit {
     constructor(
         private examinationService: ExaminationService
     ) { }
+
+    generalInfoForm: FormGroup;
 
     departments$ = this.examinationService.getDepartments()
         .pipe(first());
@@ -42,7 +44,24 @@ export class GeneralInfoComponent implements OnInit {
         this.searchValue.next(event.query);
     }
 
-    ngOnInit(): void {
+    saveChanges(): void {
+        this.examinationService.updateExamination(this.generalInfoForm.getRawValue())
+            .subscribe()
     }
 
+    ngOnInit(): void {
+        this.examinationService.getExamination()
+            .pipe(
+                first(),
+                tap(examination => {
+                    this.generalInfoForm = new FormGroup({
+                        ExaminationDate: new FormControl(new Date(examination.ExaminationDate.seconds * 1000)),
+                        Department: new FormControl(examination.Department),
+                        IsCovidExamination: new FormControl(examination.IsCovidExamination)
+                    });
+                })
+            )
+            .subscribe()
+
+    }
 }

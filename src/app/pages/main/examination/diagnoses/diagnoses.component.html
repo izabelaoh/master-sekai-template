@@ -2,10 +2,10 @@
     <h5>Diagnoses</h5>
     <p-table
         #dt
-        [value]="[]"
+        [value]="addedDiagnoses$ | async"
         responsiveLayout="scroll"
         [rows]="10"
-        [globalFilterFields]="['DiagnoseName']"
+        [globalFilterFields]="['name', 'code']"
         [rows]="10"
         [paginator]="true"
         [rowsPerPageOptions]="[10, 20, 30]"
@@ -85,62 +85,42 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="DiagnoseName">
+                <th pSortableColumn="code">
+                    Code
+                    <p-sortIcon field="code"></p-sortIcon>
+                </th>
+                <th pSortableColumn="name">
                     Diagnose
-                    <p-sortIcon field="DiagnoseName"></p-sortIcon>
+                    <p-sortIcon field="name"></p-sortIcon>
                 </th>
                 <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-diagnose>
             <tr>
+                <td style="min-width: 1rem">
+                    <span class="p-column-title">Code</span>
+                    {{ diagnose.code || "/" }}
+                </td>
                 <td style="min-width: 10rem">
                     <span class="p-column-title">Diagnose</span>
                     {{ diagnose.name }}
                 </td>
                 <td>
-                    <div class="flex">
+                    <div style="text-align: right">
                         <button
                             pButton
                             pRipple
-                            class="p-button-raised p-button-primary"
-                        >
-                            view
-                        </button>
+                            type="button"
+                            icon="pi pi-times"
+                            class="p-button-rounded p-button-danger p-button-text"
+                            style="width: 1.75rem; height: 1.75rem"
+                            (click)="removeDiagnose(diagnose)"
+                        ></button>
+                        <p-confirmPopup key="confirm2"></p-confirmPopup>
                     </div>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
-
-<!-- <p-dialog
-    header="Add diagnose"
-    [(visible)]="addMode"
-    modal="modal"
-    showEffect="fade"
-    [style]="{ width: '40vw', height: '45vh' }"
-    [breakpoints]="{ '960px': '75vw' }"
->
-    <p class="line-height-3 m-0">
-        <p-autoComplete
-            placeholder="Search diagnose"
-            id="dd"
-            [dropdown]="true"
-            [multiple]="false"
-            [suggestions]="filteredDiagnoses$ | async"
-            (completeMethod)="filterDiagnoses($event)"
-            field="name"
-            formControlName="Diagnoses"
-        ></p-autoComplete>
-    </p>
-    <ng-template pTemplate="footer">
-        <button
-            pButton
-            icon="pi pi-check"
-            (click)="display = false"
-            label="Submit"
-            class="p-button-outlined"
-        ></button>
-    </ng-template>
-</p-dialog> -->

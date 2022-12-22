@@ -28,12 +28,33 @@ export interface IDiagnoseModel {
     LOINC: string;
 }
 
-export interface IDiagnose {
-    name: string;
-    code: string;
+export interface ITherapyModel {
+    interactionConcept: {
+        minConceptItem: {
+            rxcui: string;
+            name: string;
+            tty: string;
+        },
+        sourceConceptItem: {
+            id: string;
+            name: string;
+            url: string;
+        }
+    }[],
+    severity: string;
+    description: string;
 }
 
-export interface ITherapy { }
+export interface IDiagnose {
+    code: string;
+    name: string;
+}
+
+export interface ITherapy {
+    code: string;
+    name: string;
+    amount?: string;
+}
 
 export interface IVacination { }
 

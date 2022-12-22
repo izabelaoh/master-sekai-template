@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'primeng/api';
-import { first, tap } from 'rxjs';
+import { concatMap, first, tap } from 'rxjs';
 import { IExamination } from 'src/app/shared/models/examinations/examinations.model';
 import { IPatient } from 'src/app/shared/models/patient/patient.model';
 import { ExaminationService } from 'src/app/shared/services/examinations/examination.service';
@@ -55,14 +55,21 @@ export class PatientProfileComponent {
             ExaminationDate: new Date(),
         }
 
-        this.examinationService.createExamination(examination)
+        this.examinationService.getBaseNewExaminationModel(patient.Id)
             .pipe(
                 first(),
-                tap(examinationId => {
-                    this.router.navigate([`main/patient-profile/${patient.Id}/new-examination/${examinationId}`])
+                concatMap(examination => {
+                    return this.examinationService.createExamination(examination)
+                        .pipe(
+                            first(),
+                            tap(examinationId => {
+                                this.router.navigate([`main/patient-profile/${patient.Id}/new-examination/${examinationId}`])
+                            })
+                        )
                 })
             )
             .subscribe()
+
     }
 
     ngOnInit() {
