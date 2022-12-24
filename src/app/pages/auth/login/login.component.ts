@@ -109,6 +109,13 @@ export class AppLoginComponent implements OnInit, OnDestroy {
             })
             .then((user) => {
                 this.router.navigate(['/main/dashboard']);
+
+                const userName: string = user.user.email.split('@')[0].split('.').reduce((acc, curr, ind, arr) => {
+                    return `${acc} ${curr.charAt(0).toUpperCase()}${curr.slice(1)}`;
+                }, '').trim();
+
+                user.additionalUserInfo.username = userName;
+
                 localStorage.setItem('LoggedUser', JSON.stringify(user));
             })
             .catch((err) => {

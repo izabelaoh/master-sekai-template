@@ -14,6 +14,10 @@ import { EditPatientComponent } from './pages/main/edit-patient/edit-patient.com
 import { ExaminationComponent } from './pages/main/examination/examination.component';
 import { DocumentationComponent } from './components/documentation/documentation.component';
 import { InputComponent } from './components/input/input.component';
+import { VaccinationTypeComponent } from './pages/main/examination/vaccination/vaccination-type/vaccination-type.component';
+import { VaccinationInfoComponent } from './pages/main/examination/vaccination/vaccination-info/vaccination-info.component';
+import { VaccinationProcessComponent } from './pages/main/examination/vaccination/vaccination-process/vaccination-process.component';
+import { VaccinationConfirmationComponent } from './pages/main/examination/vaccination/vaccination-confirmation/vaccination-confirmation.component';
 
 const routes: Routes = [
     {
@@ -64,7 +68,25 @@ const routes: Routes = [
                     },
                     {
                         path: 'new-examination/:examinationId',
-                        component: ExaminationComponent
+                        component: ExaminationComponent,
+                        children: [
+                            {
+                                path: 'vaccination-type',
+                                component: VaccinationTypeComponent
+                            },
+                            {
+                                path: 'vaccination-info',
+                                component: VaccinationInfoComponent
+                            },
+                            {
+                                path: 'vaccination',
+                                component: VaccinationProcessComponent
+                            },
+                            {
+                                path: 'vaccination-confirmation',
+                                component: VaccinationConfirmationComponent
+                            },
+                        ]
                     },
                     {
                         path: 'covid-examinations',

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Pfizer–BioNTech",
+        "code": "PF"
+    },
+    {
+        "name": "Moderna",
+        "code": "MO"
+    },
+    {
+        "name": "Oxford–AstraZeneca",
+        "code": "OX"
+    },
+    {
+        "name": "Janssen",
+        "code": "JA"
+    },
+    {
+        "name": "Sputnik V",
+        "code": "SP"
+    },
+    {
+        "name": "iNCOVACC",
+        "code": "IN"
+    },
+    {
+        "name": "Sinopharm BIBP",
+        "code": "SI"
+    },
+    {
+        "name": "Covaxin",
+        "code": "CO"
+    },
+    {
+        "name": "Novavax",
+        "code": "NO"
+    }
+]

@@ -35,6 +35,7 @@
                     <ng-container *ngIf="addMode">
                         <div class="flex" style="gap: 0.5rem">
                             <p-autoComplete
+                                class="flex-1"
                                 placeholder="Search new therapy..."
                                 id="dd"
                                 [dropdown]="true"
@@ -43,7 +44,6 @@
                                 (completeMethod)="filterTherapies($event)"
                                 field="name"
                                 formControlName="Therapy"
-                                class="flex-1"
                             ></p-autoComplete>
 
                             <input

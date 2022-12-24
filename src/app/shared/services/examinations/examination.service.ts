@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { concat, concatMap, first, map, observable, Observable, of, shareReplay, Subject, tap } from 'rxjs';
-import { IDepartment, IDiagnose, IDiagnoseModel, IExamination, ITherapy, ITherapyModel } from '../../models/examinations/examinations.model';
+import { IDepartment, IDiagnose, IDiagnoseModel, IExamination, ITherapy, ITherapyModel, IVaccineModel, IVacination } from '../../models/examinations/examinations.model';
 
 import { arrayUnion, arrayRemove } from '@angular/fire/firestore'
 
@@ -105,6 +105,22 @@ export class ExaminationService {
             );
     }
 
+    addVaccinationToExamination(vaccination: IVacination, examinationId: string): Observable<IExamination> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IExamination>>('examinations')
+                .doc(examinationId)
+                .update({
+                    Vaccinations: arrayUnion(vaccination) as any
+                })
+                .then(() => observer.next(true))
+                .catch(() => observer.next(false))
+        })
+            .pipe(
+                concatMap(() => this.getExaminationAsync(examinationId))
+            );
+    }
+
     addTherapyToExamination(therapy: ITherapy, examinationId: string): Observable<IExamination> {
         return new Observable(observer => {
             this.angularFireStore
@@ -133,7 +149,28 @@ export class ExaminationService {
                                 Diagnoses: arrayRemove(diagnose) as any
                             })
                             .then(() => observer.next(true))
-                            .catch(() => observer.next(false))
+                            .catch((err) => observer.next(false))
+                    })
+                        .pipe(
+                            concatMap(() => this.getExaminationAsync(examination.Id))
+                        );
+                })
+            )
+    }
+
+    removeVaccinationFromExamination(vaccine: IVacination): Observable<IExamination> {
+        return this.getExamination()
+            .pipe(
+                concatMap(examination => {
+                    return new Observable(observer => {
+                        this.angularFireStore
+                            .collection<Partial<IExamination>>('examinations')
+                            .doc(examination.Id)
+                            .update({
+                                Vaccinations: arrayRemove(vaccine) as any
+                            })
+                            .then(() => observer.next(true))
+                            .catch((err) => observer.next(false))
                     })
                         .pipe(
                             concatMap(() => this.getExaminationAsync(examination.Id))
@@ -197,6 +234,20 @@ export class ExaminationService {
                         return {
                             name: d.laytext.length > 50 ? `${d.laytext.substring(0, 50)}...` : d.laytext,
                             code: d.ICD10
+                        }
+                    })
+                })
+            )
+    }
+
+    getVaccines(): Observable<IDiagnose[]> {
+        return this.http.get('/assets/data/vaccines.json')
+            .pipe(
+                map((data: IVaccineModel[]) => {
+                    return data.map(v => {
+                        return {
+                            name: v.name,
+                            code: v.code
                         }
                     })
                 })

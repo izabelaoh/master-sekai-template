@@ -162,6 +162,10 @@ import { DiagnosesComponent } from './pages/main/examination/diagnoses/diagnoses
 import { TherapiesComponent } from './pages/main/examination/therapies/therapies.component';
 import { GeneralInfoComponent } from './pages/main/examination/general-info/general-info.component';
 import { VaccinationComponent } from './pages/main/examination/vaccination/vaccination.component';
+import { VaccinationTypeComponent } from './pages/main/examination/vaccination/vaccination-type/vaccination-type.component';
+import { VaccinationInfoComponent } from './pages/main/examination/vaccination/vaccination-info/vaccination-info.component';
+import { VaccinationProcessComponent } from './pages/main/examination/vaccination/vaccination-process/vaccination-process.component';
+import { VaccinationConfirmationComponent } from './pages/main/examination/vaccination/vaccination-confirmation/vaccination-confirmation.component';
 
 @NgModule({
     imports: [
@@ -322,7 +326,11 @@ import { VaccinationComponent } from './pages/main/examination/vaccination/vacci
         DiagnosesComponent,
         TherapiesComponent,
         GeneralInfoComponent,
-        VaccinationComponent
+        VaccinationComponent,
+        VaccinationTypeComponent,
+        VaccinationInfoComponent,
+        VaccinationProcessComponent,
+        VaccinationConfirmationComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -45,6 +45,11 @@ export interface ITherapyModel {
     description: string;
 }
 
+export interface IVaccineModel {
+    code: string;
+    name: string;
+}
+
 export interface IDiagnose {
     code: string;
     name: string;
@@ -56,7 +61,12 @@ export interface ITherapy {
     amount?: string;
 }
 
-export interface IVacination { }
+export interface IVacination {
+    code: string;
+    name: string;
+    date?: any;
+    performedBy?: string;
+}
 
 export interface IDepartment {
     name: string;

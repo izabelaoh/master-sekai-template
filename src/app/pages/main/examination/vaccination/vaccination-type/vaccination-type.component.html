@@ -1,0 +1,11 @@
+<div class="vaccination-grid">
+    <div class="vaccination" *ngFor="let vaccineType of vaccineTypes$ | async">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="vaccineType.name"
+            class="p-button-help p-button-text mr-2 mb-2"
+        ></button>
+    </div>
+</div>
