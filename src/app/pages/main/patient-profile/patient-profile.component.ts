@@ -75,6 +75,7 @@ export class PatientProfileComponent {
     ngOnInit() {
         const patientId: string = this.activatedRoute.snapshot.paramMap.get('id')
         this.patientService.getPatientAsync(patientId)
+            .subscribe()
     }
 
     ngOnDestroy() {

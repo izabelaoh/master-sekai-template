@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, firstValueFrom, map, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, concatMap, filter, first, firstValueFrom, map, Observable, of, Subject, tap } from 'rxjs';
 import { IPatient } from '../../models/patient/patient.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ITabs } from '../../models/general/components';
@@ -15,6 +15,27 @@ export class PatientService {
 
     private currentPatientSubject: BehaviorSubject<IPatient> = new BehaviorSubject(null);
     private currentPatient$ = this.currentPatientSubject.asObservable();
+
+    updatePatient(updatedPatient: Partial<IPatient>): Observable<IPatient> {
+        return this.getPatient()
+            .pipe(
+                concatMap(patient => {
+                    return new Observable(observer => {
+                        this.angularFireStore
+                            .collection<Partial<IPatient>>('patients')
+                            .doc(patient.Id)
+                            .update({
+                                ...updatedPatient
+                            })
+                            .then(() => observer.next(true))
+                            .catch((err) => observer.next(false))
+                    })
+                        .pipe(
+                            concatMap(() => this.getPatientAsync(patient.Id))
+                        );
+                })
+            )
+    }
 
     getAllPatients(): Observable<IPatient[]> {
         const patients: Subject<IPatient[]> = new Subject();
@@ -41,26 +62,29 @@ export class PatientService {
         return patients$
     }
 
-    getPatientAsync(id: string): void {
-        this.angularFireStore
-            .collection<IPatient>('patients')
-            .doc(id)
-            .ref.get()
-            .then(doc => {
+    getPatientAsync(id: string): Observable<IPatient> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<IPatient>('patients')
+                .doc(id)
+                .ref.get()
+                .then(doc => {
+                    let patient = doc.data();
+                    const urlPromise = firstValueFrom(this.angularFireStorage.ref(`${doc.data().ImageUrl}`)
+                        .getDownloadURL())
 
-                let patient = doc.data();
-                const urlPromise = firstValueFrom(this.angularFireStorage.ref(`${doc.data().ImageUrl}`)
-                    .getDownloadURL())
+                    urlPromise
+                        .then(url => {
+                            patient.ImageUrl = url;
+                            patient.Id = doc.id;
 
-                urlPromise
-                    .then(url => {
-                        patient.ImageUrl = url;
-                        patient.Id = doc.id;
+                            this.setPatient(patient);
+                            console.log(patient)
 
-                        this.setPatient(patient);
-                        console.log(patient)
-                    })
-            })
+                            observer.next(patient)
+                        })
+                })
+        })
     }
 
     getPatientTabs(): Observable<ITabs[]> {
@@ -82,6 +106,36 @@ export class PatientService {
                     }
                 })
             );
+    }
+
+    getRecoveredPatients(): Observable<number> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IPatient>>('patients', ref => ref.where('IsCovidRecovered', '==', true))
+                .get()
+                .pipe(
+                    first(),
+                    tap(data => {
+                        observer.next(data.size)
+                    })
+                )
+                .subscribe()
+        })
+    }
+
+    getDeceasedPatients(): Observable<number> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IPatient>>('patients', ref => ref.where('IsCovidDeceased', '==', true))
+                .get()
+                .pipe(
+                    first(),
+                    tap(data => {
+                        observer.next(data.size)
+                    })
+                )
+                .subscribe()
+        })
     }
 
     setPatient(patient: IPatient): void {

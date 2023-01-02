@@ -1,0 +1,51 @@
+<div class="card">
+    <h5>Patient Status Indicators</h5>
+
+    <div class="grid">
+        <div class="col-12 md:col-4">
+            <div class="field-radiobutton">
+                <p-radioButton
+                    name="city"
+                    value="IsCovidActive"
+                    [(ngModel)]="selectedIndicator"
+                    id="city1"
+                ></p-radioButton>
+                <label for="city1">Active COVID case</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field-radiobutton">
+                <p-radioButton
+                    name="city"
+                    value="IsCovidRecovered"
+                    [(ngModel)]="selectedIndicator"
+                    id="city2"
+                ></p-radioButton>
+                <label for="city2">Recovered Patient</label>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="field-radiobutton">
+                <p-radioButton
+                    name="city"
+                    value="IsCovidDeceased"
+                    [(ngModel)]="selectedIndicator"
+                    id="city3"
+                ></p-radioButton>
+                <label for="city3">Deceased Patient</label>
+            </div>
+        </div>
+        <div class="col-12 text-right">
+            <button
+                pButton
+                pRipple
+                icon="pi pi-check"
+                type="button"
+                label="Submit"
+                class="p-button-raised p-button-success"
+                style="width: auto"
+                (click)="changePatientStatus()"
+            ></button>
+        </div>
+    </div>
+</div>

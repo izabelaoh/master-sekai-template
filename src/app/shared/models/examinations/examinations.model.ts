@@ -6,7 +6,10 @@ export interface IExamination {
     IsCovidExamination: boolean;
     Diagnoses: IDiagnose[];
     Therapies: ITherapy[];
-    Vaccinations: IVacination[]
+    Vaccinations: IVacination[];
+    Measurements: IMeasurements;
+    Doctor: string;
+    IsSubmitted: boolean;
 }
 
 export interface IDiagnoseModel {
@@ -26,6 +29,26 @@ export interface IDiagnoseModel {
     wiki4: string;
     ICD10: string;
     LOINC: string;
+}
+
+export interface IMeasurements {
+    bodyMeasurements: {
+        weight: string;
+        height: string;
+        temperature: string;
+    },
+    bloodTest: {
+        wbcs: string;
+        neitrophils: string;
+        lymphocytes: string;
+        monocytes: string;
+        eosinophils: string;
+        basophiles: string;
+        rbcs: string;
+        hb: string;
+        hematocrit: string;
+        platelets: string;
+    }
 }
 
 export interface ITherapyModel {

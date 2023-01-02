@@ -1,0 +1,91 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Vaccines by month</h5>
+            <ng-container *ngIf="vaccines.datasets.length > 0">
+                <p-chart
+                    type="bar"
+                    [data]="vaccines"
+                    [options]="vaccinesOptions"
+                ></p-chart>
+            </ng-container>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h5>Vaccines count</h5>
+            <ng-container *ngIf="countData.datasets.length > 0">
+                <p-chart
+                    type="pie"
+                    [data]="countData"
+                    [options]="countOptions"
+                    [style]="{ width: '50%' }"
+                ></p-chart>
+            </ng-container>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6">
+        <div class="card mb-3">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3"
+                        >COVID patients</span
+                    >
+                    <div class="text-900 font-medium text-xl">
+                        {{ totalPatients }}
+                    </div>
+                </div>
+                <div
+                    class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                    [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+                >
+                    <i class="pi pi-check-circle text-blue-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium"></span>
+            <span class="text-500">Total number of patients</span>
+        </div>
+
+        <div class="card mb-3">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3"
+                        >Vaccinated patients</span
+                    >
+                    <div class="text-900 font-medium text-xl">
+                        {{ totalVaccinated }}
+                    </div>
+                </div>
+                <div
+                    class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                    [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+                >
+                    <i class="pi pi-check-circle text-blue-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium"></span>
+            <span class="text-500">Total number of vaccinated patients</span>
+        </div>
+
+        <div class="card mb-3">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3"
+                        >Unvaccinated patients</span
+                    >
+                    <div class="text-900 font-medium text-xl">
+                        {{ totalPatients - totalVaccinated }}
+                    </div>
+                </div>
+                <div
+                    class="flex align-items-center justify-content-center bg-blue-100 border-round"
+                    [ngStyle]="{ width: '2.5rem', height: '2.5rem' }"
+                >
+                    <i class="pi pi-check-circle text-blue-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium"></span>
+            <span class="text-500">Total number of unvaccinated patients</span>
+        </div>
+    </div>
+</div>

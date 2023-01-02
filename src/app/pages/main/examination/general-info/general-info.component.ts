@@ -1,20 +1,29 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, combineLatest, first, map, tap } from 'rxjs';
+import { ConfirmationService } from 'primeng/api';
+import { BehaviorSubject, combineLatest, first, map, Observable, tap } from 'rxjs';
+import { IExamination } from 'src/app/shared/models/examinations/examinations.model';
 import { ExaminationService } from 'src/app/shared/services/examinations/examination.service';
 
 @Component({
     selector: 'app-general-info',
     templateUrl: './general-info.component.html',
-    styleUrls: ['./general-info.component.scss']
+    styleUrls: ['./general-info.component.scss'],
+    providers: [ConfirmationService]
 })
 export class GeneralInfoComponent implements OnInit {
 
     @Input() examinationForm: FormGroup;
 
     constructor(
-        private examinationService: ExaminationService
+        private examinationService: ExaminationService,
+        private confirmationService: ConfirmationService
     ) { }
+
+    isSubmitted$: Observable<boolean> = this.examinationService.getExamination()
+        .pipe(
+            map(examination => examination.IsSubmitted)
+        )
 
     generalInfoForm: FormGroup;
 
@@ -45,8 +54,23 @@ export class GeneralInfoComponent implements OnInit {
     }
 
     saveChanges(): void {
-        this.examinationService.updateExamination(this.generalInfoForm.getRawValue())
-            .subscribe()
+        this.confirmationService.confirm({
+            key: 'confirm1',
+            message: 'Once these changes are submitted, they cannot be changed! Are you sure?',
+            accept: () => {
+                const examination: Partial<IExamination> = {
+                    ...this.generalInfoForm.getRawValue(),
+                    IsSubmitted: true
+                }
+
+                this.examinationService.updateExamination(examination)
+                    .subscribe()
+            },
+            reject: () => {
+
+            }
+        });
+
     }
 
     ngOnInit(): void {

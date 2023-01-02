@@ -19,6 +19,11 @@ export class ExaminationComponent implements OnInit {
 
     examinationForm: FormGroup;
 
+    isCovidExamination$: Observable<boolean> = this.examinationService.getExamination()
+        .pipe(
+            map(examination => examination.IsCovidExamination)
+        )
+
     createExamination(): void {
         console.log(this.examinationForm.getRawValue())
     }

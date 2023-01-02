@@ -18,6 +18,8 @@ import { VaccinationTypeComponent } from './pages/main/examination/vaccination/v
 import { VaccinationInfoComponent } from './pages/main/examination/vaccination/vaccination-info/vaccination-info.component';
 import { VaccinationProcessComponent } from './pages/main/examination/vaccination/vaccination-process/vaccination-process.component';
 import { VaccinationConfirmationComponent } from './pages/main/examination/vaccination/vaccination-confirmation/vaccination-confirmation.component';
+import { CovidStatisticsComponent } from './pages/main/covid-statistics/covid-statistics.component';
+import { VaccinationStatisticsComponent } from './pages/main/vaccination-statistics/vaccination-statistics.component';
 
 const routes: Routes = [
     {
@@ -45,6 +47,14 @@ const routes: Routes = [
             {
                 path: 'new-patient',
                 component: NewPatientComponentnent,
+            },
+            {
+                path: 'covid-statistics',
+                component: CovidStatisticsComponent,
+            },
+            {
+                path: 'vaccination-statistics',
+                component: VaccinationStatisticsComponent,
             },
             {
                 path: 'edit-patient/:id',

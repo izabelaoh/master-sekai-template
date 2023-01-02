@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { concat, concatMap, first, map, observable, Observable, of, shareReplay, Subject, tap } from 'rxjs';
-import { IDepartment, IDiagnose, IDiagnoseModel, IExamination, ITherapy, ITherapyModel, IVaccineModel, IVacination } from '../../models/examinations/examinations.model';
+import { IDepartment, IDiagnose, IDiagnoseModel, IExamination, IMeasurements, ITherapy, ITherapyModel, IVaccineModel, IVacination } from '../../models/examinations/examinations.model';
 
 import { arrayUnion, arrayRemove } from '@angular/fire/firestore'
 
@@ -137,6 +137,22 @@ export class ExaminationService {
             );
     }
 
+    updateMeasurements(measurements: IMeasurements, examinationId: string): Observable<IExamination> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IExamination>>('examinations')
+                .doc(examinationId)
+                .update({
+                    Measurements: measurements
+                })
+                .then(() => observer.next(true))
+                .catch(() => observer.next(false))
+        })
+            .pipe(
+                concatMap(() => this.getExaminationAsync(examinationId))
+            );
+    }
+
     removeDiagnoseFromExamination(diagnose: IDiagnose): Observable<IExamination> {
         return this.getExamination()
             .pipe(
@@ -200,7 +216,33 @@ export class ExaminationService {
             )
     }
 
+    getAllExaminationsForPatient(patientId: string, isCovidExamination: boolean = false): Observable<IExamination[]> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IExamination>>('examinations', ref => ref.where('PatientId', '==', patientId).where('IsCovidExamination', '==', isCovidExamination))
+                .get()
+                .pipe(
+                    first(),
+                    tap(data => {
+                        const examinations: IExamination[] = [];
+
+                        data.forEach(item => {
+                            examinations.push({
+                                ...item.data(),
+                                Id: item.id
+                            } as IExamination)
+                        })
+
+                        observer.next(examinations)
+                    })
+                )
+                .subscribe()
+        })
+    }
+
     getBaseNewExaminationModel(patientId: string): Observable<IExamination> {
+        const loggedUser = JSON.parse(localStorage.getItem('LoggedUser'));
+
         return of({
             PatientId: patientId,
             Department: null,
@@ -208,7 +250,9 @@ export class ExaminationService {
             Diagnoses: [],
             Therapies: [],
             Vaccinations: [],
-            IsCovidExamination: false
+            IsCovidExamination: false,
+            Doctor: loggedUser.additionalUserInfo.username,
+            IsSubmitted: false
         } as IExamination)
     }
 
@@ -278,5 +322,77 @@ export class ExaminationService {
                     // })
                 })
             )
+    }
+
+    getAllExaminations(): Observable<IExamination[]> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IExamination>>('examinations')
+                .get()
+                .pipe(
+                    first(),
+                    tap(data => {
+                        const examinations: IExamination[] = [];
+
+                        data.forEach(item => {
+                            examinations.push({
+                                ...item.data(),
+                                Id: item.id
+                            } as IExamination)
+                        })
+
+                        observer.next(examinations)
+                    })
+                )
+                .subscribe()
+        })
+    }
+
+    getAllCovidExaminations(): Observable<IExamination[]> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IExamination>>('examinations', ref => ref.where('IsCovidExamination', '==', true))
+                .get()
+                .pipe(
+                    first(),
+                    tap(data => {
+                        const examinations: IExamination[] = [];
+
+                        data.forEach(item => {
+                            examinations.push({
+                                ...item.data(),
+                                Id: item.id
+                            } as IExamination)
+                        })
+
+                        observer.next(examinations)
+                    })
+                )
+                .subscribe()
+        })
+    }
+
+    getRecentExaminations(): Observable<IExamination[]> {
+        return new Observable(observer => {
+            this.angularFireStore
+                .collection<Partial<IExamination>>('examinations', ref => ref.orderBy('ExaminationDate', 'desc').limit(10))
+                .get()
+                .pipe(
+                    first(),
+                    tap(data => {
+                        const examinations: IExamination[] = [];
+
+                        data.forEach(item => {
+                            examinations.push({
+                                ...item.data(),
+                                Id: item.id
+                            } as IExamination)
+                        })
+
+                        observer.next(examinations)
+                    })
+                )
+                .subscribe()
+        })
     }
 }

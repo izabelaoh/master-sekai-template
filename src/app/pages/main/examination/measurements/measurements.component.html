@@ -1,0 +1,144 @@
+<div class="card" *ngIf="measurementsForm">
+    <div [formGroup]="measurementsForm">
+        <div class="body-measurements" formGroupName="bodyMeasurements">
+            <h5>Body measurements</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="Weight">Weight (kg)</label>
+                    <input
+                        pInputText
+                        id="Weight"
+                        type="text"
+                        formControlName="weight"
+                    />
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="Height">Height (cm)</label>
+                    <input
+                        pInputText
+                        id="Height"
+                        type="text"
+                        formControlName="height"
+                    />
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="Height">Temperature (℃)</label>
+                    <input
+                        pInputText
+                        id="Height"
+                        type="text"
+                        formControlName="temperature"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="blood-measurement" formGroupName="bloodTest">
+            <h5>Blood test</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="WBCs">WBCs (billion/L)</label>
+                    <input
+                        pInputText
+                        id="WBCs"
+                        type="text"
+                        formControlName="wbcs"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Neitrophils">Neitrophils (%)</label>
+                    <input
+                        pInputText
+                        id="Neitrophils"
+                        type="text"
+                        formControlName="neitrophils"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Lymphocytes">Lymphocytes (%)</label>
+                    <input
+                        pInputText
+                        id="Lymphocytes"
+                        type="text"
+                        formControlName="lymphocytes"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Monocytes">Monocytes (%)</label>
+                    <input
+                        pInputText
+                        id="Monocytes"
+                        type="text"
+                        formControlName="monocytes"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Eosinophils">Eosinophils (%)</label>
+                    <input
+                        pInputText
+                        id="Eosinophils"
+                        type="text"
+                        formControlName="eosinophils"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Basophiles">Basophiles (%)</label>
+                    <input
+                        pInputText
+                        id="Basophiles"
+                        type="text"
+                        formControlName="basophiles"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="RBCs">RBCs (trillion/L)</label>
+                    <input
+                        pInputText
+                        id="RBCs"
+                        type="text"
+                        formControlName="rbcs"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Hb">Hb (g/dL)</label>
+                    <input
+                        pInputText
+                        id="Hb"
+                        type="text"
+                        formControlName="hb"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Hematocrit">Hematocrit (%)</label>
+                    <input
+                        pInputText
+                        id="Hematocrit"
+                        type="text"
+                        formControlName="hematocrit"
+                    />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="Platelets">Platelets (billion/L)</label>
+                    <input
+                        pInputText
+                        id="Platelets"
+                        type="text"
+                        formControlName="platelets"
+                    />
+                </div>
+                <div class="field col-12 md:col-3"></div>
+                <div class="field col-12 md:col-3 align-self-end">
+                    <button
+                        pButton
+                        pRipple
+                        icon="pi pi-check"
+                        type="button"
+                        label="Submit"
+                        class="p-button-raised p-button-success mr-2 mb-2"
+                        (click)="saveMeasurements()"
+                    ></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

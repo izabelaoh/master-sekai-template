@@ -43,12 +43,12 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'COVID-19 Statistics',
                         icon: 'pi pi-chart-bar',
-                        routerLink: ['/uikit/input'],
+                        routerLink: ['covid-statistics'],
                     },
                     {
                         label: 'Vaccinations Statistics',
                         icon: 'pi pi-chart-pie',
-                        routerLink: ['/uikit/input'],
+                        routerLink: ['vaccination-statistics'],
                     },
                 ],
             },

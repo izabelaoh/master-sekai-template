@@ -1,6 +1,11 @@
 <div class="card" *ngIf="generalInfoForm">
     <h4>General Examination Information</h4>
-    <form [formGroup]="generalInfoForm">
+    <form
+        [formGroup]="generalInfoForm"
+        *ngIf="{
+            isSubmitted: isSubmitted$ | async
+        } as data"
+    >
         <div class="grid p-fluid">
             <div class="col-12 md:col-6">
                 <h5>Examination date</h5>
@@ -10,6 +15,7 @@
                     [showButtonBar]="true"
                     placeholder="Examination Date"
                     formControlName="ExaminationDate"
+                    [disabled]="data.isSubmitted"
                 ></p-calendar>
             </div>
 
@@ -24,6 +30,7 @@
                     (completeMethod)="filterDepartments($event)"
                     field="name"
                     formControlName="Department"
+                    [disabled]="data.isSubmitted"
                 ></p-autoComplete>
             </div>
 
@@ -32,20 +39,35 @@
                 <div>
                     <p-inputSwitch
                         formControlName="IsCovidExamination"
+                        [disabled]="data.isSubmitted"
                     ></p-inputSwitch>
                 </div>
             </div>
 
-            <div class="col-12 md:col-6">
-                <button
-                    pButton
-                    pRipple
-                    icon="pi pi-plus"
-                    type="button"
-                    label="Save changes"
-                    class="p-button-raised p-button-success mr-2 mb-2"
-                    (click)="saveChanges()"
-                ></button>
+            <div class="col-12 md:col-6 text-right" *ngIf="!data.isSubmitted">
+                <p-confirmDialog
+                    header="Confirmation"
+                    key="confirm1"
+                    icon="pi pi-exclamation-triangle"
+                    message="Are you sure you want to proceed?"
+                    [style]="{ width: '350px' }"
+                    acceptButtonStyleClass="p-button-text"
+                    rejectButtonStyleClass="p-button-text p-button-secondary"
+                ></p-confirmDialog>
+                <div class="grid">
+                    <div class="col-12">
+                        <button
+                            pButton
+                            pRipple
+                            icon="pi pi-check"
+                            type="button"
+                            label="Submit"
+                            class="p-button-raised p-button-success"
+                            style="width: auto"
+                            (click)="saveChanges()"
+                        ></button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>

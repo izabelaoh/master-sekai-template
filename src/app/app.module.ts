@@ -166,6 +166,10 @@ import { VaccinationTypeComponent } from './pages/main/examination/vaccination/v
 import { VaccinationInfoComponent } from './pages/main/examination/vaccination/vaccination-info/vaccination-info.component';
 import { VaccinationProcessComponent } from './pages/main/examination/vaccination/vaccination-process/vaccination-process.component';
 import { VaccinationConfirmationComponent } from './pages/main/examination/vaccination/vaccination-confirmation/vaccination-confirmation.component';
+import { MeasurementsComponent } from './pages/main/examination/measurements/measurements.component';
+import { IndicatorsComponent } from './pages/main/examination/indicators/indicators.component';
+import { CovidStatisticsComponent } from './pages/main/covid-statistics/covid-statistics.component';
+import { VaccinationStatisticsComponent } from './pages/main/vaccination-statistics/vaccination-statistics.component';
 
 @NgModule({
     imports: [
@@ -330,7 +334,11 @@ import { VaccinationConfirmationComponent } from './pages/main/examination/vacci
         VaccinationTypeComponent,
         VaccinationInfoComponent,
         VaccinationProcessComponent,
-        VaccinationConfirmationComponent
+        VaccinationConfirmationComponent,
+        MeasurementsComponent,
+        IndicatorsComponent,
+        CovidStatisticsComponent,
+        VaccinationStatisticsComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

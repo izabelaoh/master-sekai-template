@@ -49,8 +49,8 @@ export class AppLoginComponent implements OnInit, OnDestroy {
     ) { }
 
     loginForm = new FormGroup({
-        email: new FormControl('admin@sakai.com', [Validators.required, Validators.email]),
-        password: new FormControl('admin@sakai.com', [Validators.required]),
+        email: new FormControl('izabela.mitreska@sakai.com', [Validators.required, Validators.email]),
+        password: new FormControl('izabela.mitreska@sakai.com', [Validators.required]),
     });
 
     ngOnInit(): void {

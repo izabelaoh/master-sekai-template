@@ -4,6 +4,14 @@
         <app-general-info></app-general-info>
     </div>
 
+    <div class="col-12" *ngIf="isCovidExamination$ | async">
+        <app-vaccination></app-vaccination>
+    </div>
+
+    <div class="col-12" *ngIf="isCovidExamination$ | async">
+        <app-indicators></app-indicators>
+    </div>
+
     <div class="col-12">
         <app-diagnoses></app-diagnoses>
     </div>
@@ -13,7 +21,7 @@
     </div>
 
     <div class="col-12">
-        <app-vaccination></app-vaccination>
+        <app-measurements></app-measurements>
     </div>
 
     <!-- <div class="col-12">

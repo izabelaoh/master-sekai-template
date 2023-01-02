@@ -28,4 +28,8 @@ export interface IPatient {
 
     IsValidInsurance?: boolean;
     ImageUrl?: string;
+
+    IsCovidRecovered?: boolean;
+    IsCovidDeceased?: boolean;
+    IsCovidActive?: boolean;
 }

@@ -1,12 +1,23 @@
-<div class="grid">
+<div
+    class="grid"
+    *ngIf="{
+        allExaminations: allExaminations$ | async,
+        covidExaminations: covidExaminations$ | async,
+        recoveredPatients: recoveredPatients$ | async,
+        deceasedPatients: deceasedPatients$ | async,
+        recentExaminations: recentExaminations$ | async
+    } as data"
+>
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
                     <span class="block text-500 font-medium mb-3"
-                        >Confirmed</span
+                        >Total Examinations</span
                     >
-                    <div class="text-900 font-medium text-xl">152</div>
+                    <div class="text-900 font-medium text-xl">
+                        {{ data.allExaminations?.total }}
+                    </div>
                 </div>
                 <div
                     class="flex align-items-center justify-content-center bg-blue-100 border-round"
@@ -15,16 +26,30 @@
                     <i class="pi pi-check-circle text-blue-500 text-xl"></i>
                 </div>
             </div>
-            <span class="text-green-500 font-medium">24 new </span>
-            <span class="text-500">COVID-19 confirmed cases!</span>
+            <span class="text-green-500 font-medium"
+                >{{ data.allExaminations?.todayNew }} new
+            </span>
+            <span class="text-500"
+                >{{
+                    data.allExaminations?.total === 1
+                        ? "examination"
+                        : "examinations"
+                }}
+                today</span
+            >
         </div>
     </div>
+
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
-                    <span class="block text-500 font-medium mb-3">Active</span>
-                    <div class="text-900 font-medium text-xl">$2.100</div>
+                    <span class="block text-500 font-medium mb-3"
+                        >COVID-19</span
+                    >
+                    <div class="text-900 font-medium text-xl">
+                        {{ data.covidExaminations?.total }}
+                    </div>
                 </div>
                 <div
                     class="flex align-items-center justify-content-center bg-orange-100 border-round"
@@ -33,18 +58,30 @@
                     <i class="pi pi-plus text-orange-500 text-xl"></i>
                 </div>
             </div>
-            <span class="text-green-500 font-medium">%52+ </span>
-            <span class="text-500">COVID-19 active cases!</span>
+            <span class="text-green-500 font-medium"
+                >{{ data.covidExaminations?.todayNew }} new
+            </span>
+            <span class="text-500"
+                >{{
+                    data.covidExaminations?.total === 1
+                        ? "examination"
+                        : "examinations"
+                }}
+                today</span
+            >
         </div>
     </div>
+
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
                     <span class="block text-500 font-medium mb-3"
-                        >Recovered</span
+                        >Total Recovered</span
                     >
-                    <div class="text-900 font-medium text-xl">28441</div>
+                    <div class="text-900 font-medium text-xl">
+                        {{ data.recoveredPatients }}
+                    </div>
                 </div>
                 <div
                     class="flex align-items-center justify-content-center bg-cyan-100 border-round"
@@ -53,16 +90,21 @@
                     <i class="pi pi-heart text-cyan-500 text-xl"></i>
                 </div>
             </div>
-            <span class="text-green-500 font-medium">520 </span>
+            <span class="text-green-500 font-medium"></span>
             <span class="text-500">COVID-19 recovered patients!</span>
         </div>
     </div>
+
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="card mb-0">
             <div class="flex justify-content-between mb-3">
                 <div>
-                    <span class="block text-500 font-medium mb-3">Death</span>
-                    <div class="text-900 font-medium text-xl">152 Unread</div>
+                    <span class="block text-500 font-medium mb-3"
+                        >Total Deceased</span
+                    >
+                    <div class="text-900 font-medium text-xl">
+                        {{ data.deceasedPatients }}
+                    </div>
                 </div>
                 <div
                     class="flex align-items-center justify-content-center bg-purple-100 border-round"
@@ -71,62 +113,113 @@
                     <i class="pi pi-times text-purple-500 text-xl"></i>
                 </div>
             </div>
-            <span class="text-green-500 font-medium">85 </span>
-            <span class="text-500">COVID-19 death patients!</span>
+            <span class="text-green-500 font-medium"></span>
+            <span class="text-500">COVID-19 deceased patients!</span>
         </div>
     </div>
 
     <div class="col-12">
         <div class="card">
-            <h5>Recent Sales</h5>
+            <h5>Last 10 Examinations</h5>
             <p-table
-                [value]="products"
-                [paginator]="true"
-                [rows]="5"
+                #dt
+                [value]="data.recentExaminations"
                 responsiveLayout="scroll"
+                [rows]="10"
+                [globalFilterFields]="[
+                    'date',
+                    'Department',
+                    'Doctor',
+                    'isCovid'
+                ]"
+                [rows]="10"
+                [paginator]="true"
+                [rowsPerPageOptions]="[10, 20, 30]"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} examinations"
+                [rowHover]="true"
+                dataKey="id"
             >
+                <ng-template pTemplate="caption">
+                    <div
+                        class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
+                        style="gap: 0.5rem"
+                    >
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input
+                                pInputText
+                                type="text"
+                                (input)="
+                                    dt.filterGlobal(
+                                        $event.target.value,
+                                        'contains'
+                                    )
+                                "
+                                placeholder="Search examinations..."
+                            />
+                        </span>
+                    </div>
+                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Image</th>
-                        <th pSortableColumn="name">
-                            Name <p-sortIcon field="name"></p-sortIcon>
+                        <th pSortableColumn="date">
+                            Date
+                            <p-sortIcon field="date"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="price">
-                            Price <p-sortIcon field="price"></p-sortIcon>
+                        <th pSortableColumn="department">
+                            Department
+                            <p-sortIcon field="department"></p-sortIcon>
                         </th>
-                        <th>View</th>
+                        <th pSortableColumn="doctor">
+                            Doctor
+                            <p-sortIcon field="doctor"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="isCovid">
+                            Is COVID?
+                            <p-sortIcon field="isCovid"></p-sortIcon>
+                        </th>
+                        <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-product>
+                <ng-template pTemplate="body" let-examination>
                     <tr>
-                        <td style="width: 15%; min-width: 5rem">
-                            <img
-                                src="assets/demo/images/product/{{
-                                    product.image
-                                }}"
-                                class="shadow-4"
-                                alt="{{ product.name }}"
-                                width="50"
-                            />
+                        <td style="min-width: 1rem">
+                            <span class="p-column-title">Date</span>
+                            {{
+                                examination.ExaminationDate?.seconds * 1000
+                                    | date : "dd.MM.YYYY"
+                            }}
                         </td>
-                        <td style="width: 35%; min-width: 7rem">
-                            {{ product.name }}
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Department</span>
+                            {{ examination.Department?.name || "/" }}
                         </td>
-                        <td style="width: 35%; min-width: 8rem">
-                            {{ product.price | currency: "USD" }}
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Doctor</span>
+                            {{ examination.Doctor }}
                         </td>
-                        <td style="width: 15%">
-                            <button
-                                pButton
-                                pRipple
-                                type="button"
-                                icon="pi pi-search"
-                                class="p-button p-component p-button-text p-button-icon-only"
-                            ></button>
+                        <td style="min-width: 10rem">
+                            <span class="p-column-title">Is COVID?</span>
+                            {{ examination.IsCovidExamination }}
+                        </td>
+                        <td>
+                            <div style="text-align: right">
+                                <button
+                                    pButton
+                                    pRipple
+                                    type="button"
+                                    class="p-button-text p-button-help p-button-text"
+                                    style="width: auto; height: 1.75rem"
+                                    (click)="viewExamination(examination)"
+                                >
+                                    view
+                                </button>
+                            </div>
                         </td>
                     </tr>
-                </ng-template>
-            </p-table>
+                </ng-template></p-table
+            >
         </div>
     </div>
 </div>

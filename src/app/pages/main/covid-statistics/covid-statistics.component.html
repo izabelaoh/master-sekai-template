@@ -1,0 +1,40 @@
+<div class="grid">
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h5>COVID vs General Examinations</h5>
+            <ng-container *ngIf="covidVsGenralData.datasets.length > 0">
+                <p-chart
+                    type="line"
+                    [data]="covidVsGenralData"
+                    [options]="covidVsGeneralOptions"
+                    [style]="{ width: '50%' }"
+                ></p-chart>
+            </ng-container>
+        </div>
+
+        <div class="card">
+            <h5>Patient status</h5>
+            <ng-container *ngIf="patientStatusData.datasets.length > 0">
+                <p-chart
+                    type="radar"
+                    [data]="patientStatusData"
+                    [options]="patientStatusOptions"
+                    [style]="{ width: '50%' }"
+                ></p-chart>
+            </ng-container>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h5>COVID Diagnoses</h5>
+            <ng-container *ngIf="covidDiagnosesData.datasets.length > 0">
+                <p-chart
+                    type="pie"
+                    [data]="covidDiagnosesData"
+                    [options]="covidDiagnosesOptions"
+                    [style]="{ width: '50%' }"
+                ></p-chart>
+            </ng-container>
+        </div>
+    </div>
+</div>
